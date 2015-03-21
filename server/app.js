@@ -16,6 +16,33 @@
 */
 
 /* =============================================
+                Global variables
+   ============================================= */
+
+// Parsing the original datasets.
+var AUTO_REFRESH_ORIGINAL_TSV = false;
+var BASE_DATA = {};
+var TSV_SOURCE = 'https://raw.githubusercontent.com/Treeofsavior/EnglishTranslation/master/';
+var TSV_FILES  = { /* TSV_FILES cannot have any '.' (dot) in the part of key, please careful */
+	'ETC' : {
+		'KR' : 'ETC.tsv',
+		'EN' : 'ETC_en.tsv',
+	},
+	'QUEST_LV_0100' : {
+		'KR' : 'QUEST_LV_0100.tsv',
+		'EN' : 'QUEST_LV_0100_en.tsv',
+	},
+};
+
+// Facebook app.
+var FACEBOOK_APP_ID        = '1810718309152618';
+var FACEBOOK_APP_SECRECT   = '784fbb1f0a480cac854f79a39e3617d9';
+var FACEBOOK_CALL_BACK_URL = 'http://140.109.16.10:3000/auth/facebook/callback';
+
+// Client end.
+var DEFAULT_CONVERSATIONS_PER_PAGE = 5;
+
+/* =============================================
                     Packages
    ============================================= */
 
@@ -48,33 +75,6 @@ app.use(passport.session());
 app.use('/public', express.static(__dirname + '/public'));
 
 /* =============================================
-                Global variables
-   ============================================= */
-
-// Parsing the original datasets.
-var AUTO_REFRESH_ORIGINAL_TSV = false;
-var BASE_DATA = {};
-var TSV_SOURCE = 'https://raw.githubusercontent.com/Treeofsavior/EnglishTranslation/master/';
-var TSV_FILES  = { /* TSV_FILES cannot have any '.' (dot) in the part of key, please careful */
-	'ETC' : {
-		'KR' : 'ETC.tsv',
-		'EN' : 'ETC_en.tsv',
-	},
-	'QUEST_LV_0100' : {
-		'KR' : 'QUEST_LV_0100.tsv',
-		'EN' : 'QUEST_LV_0100_en.tsv',
-	},
-};
-
-// Facebook app.
-var FACEBOOK_APP_ID        = '1810718309152618';
-var FACEBOOK_APP_SECRECT   = '784fbb1f0a480cac854f79a39e3617d9';
-var FACEBOOK_CALL_BACK_URL = 'http://140.109.16.10:3000/auth/facebook/callback';
-
-// Client end.
-var DEFAULT_CONVERSATIONS_PER_PAGE = 5;
-
-/* =============================================
                  Website pages
    ============================================= */
 
@@ -93,14 +93,53 @@ app.get('/', function (req, res) {
 		user     : user
 	});
 });
+
 // Login via Facebook.
-app.get('/login', function (req, res) {
-	res.redirect('/auth/facebook');
-});
+app.get('/login', function (req, res) { res.redirect('/auth/facebook'); });
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-	successRedirect: '/', failureRedirect: '/login'
-}));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+
+// Conversation detail.
+app.get('/conversation/:code', function (req, res) {
+	async.waterfall([
+		// User checking.
+		function (callback) {
+			var user = req.user;
+			callback(null, user);
+		},
+		function (user, callback) {
+			var code = req.params && req.params.code;
+			if (code) {
+				var conversations = BASE_DATA[code];
+				callback(null, code, conversations);
+			} else {
+				callback('ERR_CODE_NOT_EXIST');
+			}
+		},
+		function (code, conversations, callback) {
+			var fileSrc = path.normalize(__dirname + '/crowdsourcing/' + code + '.json');
+			fs.readFile(fileSrc, 'utf-8', function (err, data) {
+				if (! err) {
+					eval("var translations = " + data + ";");
+					callback(null, code, conversations, translations);
+				} else {
+					callback('ERR_CODE_FILE_NOT_EXIST');
+				}
+			});
+		}
+	], function (err, code, conversations, translations) {
+		if (! err) {
+			res.render('detail', {
+				code          : code,
+				conversations : conversations,
+				translations  : translations
+			});
+		} else {
+			res.send(err);
+		}
+	});
+});
+
 // 404 page redirect.
 app.use(function (req, res) {
 	res.status(400).redirect('/');
@@ -214,7 +253,7 @@ var generateTranslateBaseData = function () {
 				var destB = __dirname + '/crowdsourcing/' + code + '.json';
 				fs.exists(destB, function (exists) {
 					if (! exists) {
-						fs.writeFile(destB, JSON.stringify("{}"), 'utf8', function (err) {});
+						fs.writeFile(destB, JSON.stringify({}), 'utf8', function (err) {});
 					}
 				});
 			});

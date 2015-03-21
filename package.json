@@ -1,0 +1,27 @@
+{
+  "name": "Tree-of-Savior-Chinese-Translation-Voting",
+  "version": "0.1.0",
+  "description": "A sample Node.js app using Express 4",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js"
+  },
+  "dependencies": {
+    "express": "~4.9.x"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grass0916/Tree-of-Savior-Chinese-Translation-Voting"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express",
+    "mmorpg",
+    "tos"
+  ],
+  "license": "MIT"
+}

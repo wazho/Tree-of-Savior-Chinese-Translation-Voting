@@ -49,7 +49,7 @@ html
 								div.ui.orange.label {nl}
 								|  的文字，在實際遊戲會轉為「換行 new line」。請您在翻譯時保留 
 								div.ui.orange.label {nl}
-								|  出現在合適的位置，只要符合本國語言習慣換行是您可以自由控制刪減的。
+								|  出現在合適的位置，只要符合本國語言習慣，換行是您可以自由控制刪減的。
 					h2.ui.header
 						i.tree.icon
 						div.content 翻譯注意事項（二）
@@ -101,8 +101,9 @@ html
 									td -
 									td -
 									td -
-									td.center.aligned
+									td.center.aligned(onclick="detailConversation('" + code + "');")
 										i.add.circle.icon
+		include detail.jade
 		include footer.jade
 		script.
 			// Random image for header screenshot.
@@ -147,3 +148,31 @@ html
 					sessionStorage[group] = 'off';
 				}
 			});
+		script.
+			// Fullscreen dialog for detail of conversation.
+			function detailConversation(code) {
+				ajaxGetConversation(code, function (data) {
+					var $modal = $('.detailConversation.ui.modal'),
+						HTML   = $.parseHTML(data, null, true);
+					$modal.replaceWith(HTML[0]);
+					$modal = $('.detailConversation.ui.modal');
+					$modal.modal('show');
+				});
+			}
+		script.
+			function ajaxGetConversation(code, callback) {
+				$.ajax(
+					{
+						url     : '/conversation/' + code,
+						type    : 'GET',
+						error   : function () {
+							var data = { type: 'ERR_TIMEOUT' };
+							callback(data);
+						},
+						success : function (data) {
+							callback(data);
+						},
+						timeout : 5000
+					}
+				);
+			}

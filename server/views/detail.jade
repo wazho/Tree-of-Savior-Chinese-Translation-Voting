@@ -1,0 +1,52 @@
+div.ui.fullscreen.modal.detailConversation
+	i.close.icon
+	div.header 編號: #{code}
+	div.content
+		div.description
+			if conversations
+				div.ui.two.column.stackable.grid
+					each conversation, language in conversations
+						div.column
+							if language === 'KR'
+								div.ui.blue.message
+									div.country.flag
+										img(src="/public/images/country/32/South-Korea.png")
+									if conversation
+										| #{conversation}
+									else
+										| 暫無資料
+							else if language === 'EN'
+								div.ui.orange.message
+									div.country.flag
+										img(src="/public/images/country/32/United-States.png")
+									if conversation
+										| #{conversation}
+									else
+										| 暫無資料
+				div.ui.horizontal.divider
+					img(src="/public/images/country/32/Taiwan.png")
+			if translations && translations.length
+				div.ui.comments
+					each translation in translations
+						div.comment
+							a.avatar
+								img(src='http://graph.facebook.com/' + translator + '/picture?type=square')
+							div.content
+								div.metadata
+									span.assentients 共有 #{translation.assentients.length} 人認同
+								div.text
+									div.conversation #{translation.conversation}
+			else
+				div.ui.message 暫無資料
+			// each translation, translator in { 4: { conversation: '這是對話筐筐', submit_time: 'xxxxx', assentients: [1,2,4] }, 7: { conversation: '這是對 2Ｍ', submit_time: 'xxxxx', assentients: [1,2,4,9,19] }}
+	div.actions
+		if ! user
+			a(href='login')
+				button.ui.facebook.button
+					i.facebook.icon
+					| 登入 Facebook 開始協助翻譯
+		else
+			button.ui.green.button
+				i.pencil.icon
+				| 我要提交翻譯版本
+		div.ui.button 關閉視窗
