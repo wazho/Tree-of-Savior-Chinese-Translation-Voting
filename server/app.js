@@ -20,30 +20,42 @@
    ============================================= */
 
 // Below is native libraries.
-var readline = require('readline');
-var path     = require('path');
-var url      = require('url');
-var fs       = require('fs');
+var readline = require('readline'),
+	path     = require('path'),
+	url      = require('url'),
+	fs       = require('fs');
 // Below is 3rd-party libraries.
-var async            = require('async');
-var _                = require('underscore');
-var request          = require('request');
-var express          = require('express');
-var jade             = require('jade');
-var passport         = require('passport')
-var FacebookStrategy = require('passport-facebook').Strategy;
+var async            = require('async'),
+	_                = require('underscore'),
+	request          = require('request'),
+	express          = require('express'),
+	session          = require('express-session'),
+	cookieParser     = require('cookie-parser'),
+	bodyParser       = require('body-parser'),
+	jade             = require('jade'),
+	moment           = require('moment'),
+	passport         = require('passport'),
+	FacebookStrategy = require('passport-facebook').Strategy;
 var app              = express();
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({ secret: 'Salmon', key: 'Salmon'}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/public', express.static(__dirname + '/public'));
 
 /* =============================================
                 Global variables
    ============================================= */
 
+// Parsing the original datasets.
 var AUTO_REFRESH_ORIGINAL_TSV = false;
-
+var BASE_DATA = {};
 var TSV_SOURCE = 'https://raw.githubusercontent.com/Treeofsavior/EnglishTranslation/master/';
-
-/* TSV_FILES cannot have any '.' (dot) in the part of key, please careful */
-var TSV_FILES  = {
+var TSV_FILES  = { /* TSV_FILES cannot have any '.' (dot) in the part of key, please careful */
 	'ETC' : {
 		'KR' : 'ETC.tsv',
 		'EN' : 'ETC_en.tsv',
@@ -54,54 +66,74 @@ var TSV_FILES  = {
 	},
 };
 
-var BASE_DATA = {};
+// Facebook app.
+var FACEBOOK_APP_ID        = '1810718309152618';
+var FACEBOOK_APP_SECRECT   = '784fbb1f0a480cac854f79a39e3617d9';
+var FACEBOOK_CALL_BACK_URL = 'http://140.109.16.10:3000/auth/facebook/callback';
 
-/* =============================================
-             Facebook authentication
-   ============================================= */
-
-// passport.use(new FacebookStrategy({
-//     clientID: FACEBOOK_APP_ID,
-//     clientSecret: FACEBOOK_APP_SECRET,
-//     callbackURL: "http://www.example.com/auth/facebook/callback"
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     User.findOrCreate(..., function(err, user) {
-//       if (err) { return done(err); }
-//       done(null, user);
-//     });
-//   }
-// ));
+// Client end.
+var DEFAULT_CONVERSATIONS_PER_PAGE = 5;
 
 /* =============================================
                  Website pages
    ============================================= */
 
-app.use('/public', express.static(__dirname + '/public'));
-app.set('views', __dirname + '/views');
-app.locals.basedir = app.get('views');
-app.set('view engine', 'jade');
-
 app.get('/', function (req, res) {
-	var sample = _.sample(_.keys(BASE_DATA), 5);
+	// User checking.
+	var user = req.user;
+	// Filtering part of conversions to layout.
+	var sample = _.sample(_.keys(BASE_DATA), DEFAULT_CONVERSATIONS_PER_PAGE);
 	var filter = {};
 	_.map(sample, function (code) {
 		filter[code] = BASE_DATA[code];
 	});
+	console.log(user);
 	res.render('index', {
-		baseData : filter
+		baseData : filter,
+		user     : user
 	});
 });
-
+// Login via Facebook.
 app.get('/login', function (req, res) {
-	res.render('login_fb');
+	res.redirect('/auth/facebook');
 });
-
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+	successRedirect: '/', failureRedirect: '/login'
+}));
+// 404 page redirect.
 app.use(function (req, res) {
 	res.status(400).redirect('/');
 });
 
 var server = app.listen(3000);
+
+/* =============================================
+             Facebook authentication
+   ============================================= */
+
+// Passport session setup.
+passport.serializeUser(function (user, done) {
+	done(null, user);
+});
+passport.deserializeUser(function (obj, done) {
+	done(null, obj);
+});
+// Use the FacebookStrategy within Passport.
+passport.use(new FacebookStrategy({
+		clientID     : FACEBOOK_APP_ID,
+		clientSecret : FACEBOOK_APP_SECRECT,
+		callbackURL  : FACEBOOK_CALL_BACK_URL
+	}, function (accessToken, refreshToken, profile, done) {
+		userControl.findOrCreateUser(profile, function (err, user) {
+			if (! err) {
+				return done(null, user);
+			} else {
+				return done(err);
+			}
+		});
+	})
+);
 
 /* =============================================
           Generate Translate Base Data
@@ -184,11 +216,11 @@ var generateTranslateBaseData = function () {
 					if (! exists) {
 						fs.writeFile(destB, JSON.stringify("{}"), 'utf8', function (err) {});
 					}
-				})
+				});
 			});
 		});
 	});
-};
+}
 
 /* =============================================
           Generate Translate Base Data
@@ -214,7 +246,7 @@ var readTranslateBaseData = function () {
 			console.log("The generated files has loaded completely.");
 		});
 	});
-};	
+}
 
 /* =============================================
               Initial for Base Data
@@ -226,3 +258,30 @@ if (AUTO_REFRESH_ORIGINAL_TSV) {
 } else {
 	readTranslateBaseData();
 }
+
+/* =============================================
+               Find or create user
+   ============================================= */
+
+function User() {}
+
+var userControl = new User();
+
+User.prototype.findOrCreateUser = function (profile, callback) {
+	if (! profile) {
+		return callback('ERR_PROFILE');
+	}
+	var user = {
+		id          : profile.id,
+		name        : profile.displayName,
+		gender      : profile.gender,
+		create_time : moment().format('YYYY-MM-DD HH:mm:ss')
+	};
+	var userDest = __dirname + '/users/' + user.id + '.json';
+	fs.exists(userDest, function (exists) {
+		if (! exists) {
+			fs.writeFile(userDest, JSON.stringify(user), 'utf8', function (err) {});
+		}
+	});
+	callback(null, user);
+};

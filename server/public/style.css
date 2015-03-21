@@ -46,29 +46,36 @@ header .container .title .word {
 
 /* Body */
 
-body > div.wrapper {
+body > .wrapper {
 	min-height: 100%;
 	overflow: hidden;
 	padding-bottom: 200px;
+}
+
+body > .wrapper > .container {
 	padding-left: 30px;
 	padding-right: 30px;
 }
 
 @media screen and (max-width: 767px) {
-	body > div.wrapper {
+	body > .wrapper > .container {
 		padding-left: 10px;
 		padding-right: 10px;
 	}
 }
 
-div.tableBinder label {
+.tableBinder label {
 	font-size: 1.35em !important;
 	letter-spacing: 0.5em;
 }
 
+.tableContainer {
+	margin-bottom: 100px !important;
+}
+
 footer {
 	position: relative;
-	margin-top: -100px;
+	margin-top: -175px;
 	background-color: #323530;
 	clear: both;
 }
@@ -92,7 +99,7 @@ footer .content > .header {
 }
 
 footer .author {
-	padding: 10px;
+	padding: 10px 0px 30px 0px;
 }
 
 @media screen and (max-width: 767px) {
