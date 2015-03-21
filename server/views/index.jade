@@ -1,0 +1,115 @@
+html
+	head
+		title 救世主之樹 - 國際伺服器 台灣繁體中文群眾外包翻譯
+		// Semantic CSS.
+		link(rel='stylesheet', href='/public/libs/Semantic-UI-1.11.4/semantic.min.css')
+		// Default CSS.
+		link(rel='stylesheet', href='/public/style.css')
+		// jQuery js.
+		script(src='/public/libs/jquery-1.11.1/jquery-1.11.1.min.js')
+		// Semantic js.
+		script(src='/public/libs/Semantic-UI-1.11.4/semantic.min.js')
+
+	body
+		header
+		div.wrapper
+			div.ui.segment
+				h2.ui.header
+					i.tree.icon
+					div.content 請遵守網路禮儀
+						div.sub.header
+							| 若有惡意操作或散播不雅言語，本站將會將您的帳號禁止訪問並且公佈 ID。
+				h2.ui.header
+					i.tree.icon
+					div.content 如何開始？
+						div.sub.header
+							| 您可以選擇主動提交翻譯內容，亦或是在其他玩家已提交的翻譯中，選出你最中意、最符合本國語言習慣的句子即可。
+				h2.ui.header
+					i.tree.icon
+					div.content 翻譯注意事項
+						div.sub.header
+							| 在原文句子中會見到 {nl} 的文字，在實際遊戲會轉為「換行 new line」。請您在翻譯時保留 {nl} 出現在合適的位置，只要符合本國語言習慣換行是您可以自由控制刪減的。
+			div.ui.blue.segment.tableBinder
+				div.ui.three.column.stackable.grid
+					div.center.aligned.column
+						div.ui.checkbox
+							input(name='code', type='checkbox', data-group='code')
+							label 顯示編號
+					div.center.aligned.column
+						div.ui.checkbox
+							input(name='korean', type='checkbox', data-group='korean')
+							label 顯示韓文
+					div.center.aligned.column
+						div.ui.checkbox
+							input(name='english', type='checkbox', data-group='english')
+							label 顯示英文
+			div.ui.green.segment.tableContainer
+				table.ui.striped.celled.structured.table
+					thead
+						tr
+							th.one.wide.collapsing.center.aligned(rowspan='2', data-group='code') 編號
+							th.four.wide.center.aligned(rowspan='2', data-group='korean') 韓文（Korean）
+							th.four.wide.center.aligned(rowspan='2', data-group='english') 英語（English）
+							th.seven.wide.center.aligned(colspan='4') 正體中文（Chinese Traditional）
+						tr
+							th.two.wide.center.aligned 當前第一
+							th.two.wide.center.aligned 當前第二
+							th.two.wide.center.aligned 當前第三
+							th.one.wide.collapsing.center.aligned 展開全部
+					tbody
+						each languages, code in baseData
+							tr
+								td.left.aligned #{code}
+								each conversation in languages
+									if conversation !== ''
+										td
+											div #{conversation}
+									else
+										td.disabled
+											div 暫無資料
+								td -
+								td -
+								td -
+								td.center.aligned
+									i.add.circle.icon
+		include footer.jade
+		script.
+			// Random image for header screenshot.
+			$('header').css('background-image', 'url(/public/images/screenshots/' + Math.floor(Math.random() * 5 + 1) + '.jpg)');
+			// Semantic-UI Checkbox default value using session storage.
+			if (! sessionStorage.code) {
+				sessionStorage.code = 'off';
+			}
+			if (! sessionStorage.korean) {
+				sessionStorage.korean = 'on';
+			}
+			if (! sessionStorage.english) {
+				sessionStorage.english = 'on';
+			}
+			$('.ui.checkbox').map(function (index, element) {
+				var group  = $('input', element).data('group');
+				var toggle = sessionStorage[group];
+				$(element).checkbox((toggle === 'on') ? 'check' : 'uncheck');
+			});
+			$('.ui.checkbox').checkbox({
+				onChecked   : function () {
+					var group  = $(this).data('group');
+					var index  = $('th[data-group=' + group + ']').index('thead tr th') + 1;
+					var $thead = $('th[data-group=' + group + ']');
+					var $tbody = $('tbody tr td:nth-child(' + index + ')');
+					$thead.show();
+					$tbody.show();
+					// Modify the session storage.
+					sessionStorage[group] = 'on';
+				},
+				onUnchecked	: function () {
+					var group  = $(this).data('group');
+					var index  = $('th[data-group=' + group + ']').index('thead tr th') + 1;
+					var $thead = $('th[data-group=' + group + ']');
+					var $tbody = $('tbody tr td:nth-child(' + index + ')');
+					$thead.hide();
+					$tbody.hide();
+					// Modify the session storage.
+					sessionStorage[group] = 'off';
+				}
+			});

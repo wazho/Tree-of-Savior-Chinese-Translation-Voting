@@ -1,0 +1,84 @@
+html, body {
+	height: 100%;
+}
+
+header {
+	height: 300px;
+	overflow: hidden;
+	margin-bottom: 30px;
+	background-size: 100%;
+	background-position: center center;
+}
+
+@media (max-width: 1500px) {
+	header {
+		background-size: 1500px;
+	}
+}
+
+body > div.wrapper {
+	min-height: 100%;
+	overflow: hidden;
+	padding-bottom: 200px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+@media screen and (max-width: 767px) {
+	body > div.wrapper {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+}
+
+div.tableBinder label {
+	font-size: 1.35em !important;
+	letter-spacing: 0.5em;
+}
+
+div.tableContainer {
+	overflow: scroll;
+}
+
+div.tableContainer table {
+	min-width: 650px;
+}
+
+footer {
+	position: relative;
+	margin-top: -100px;
+	background-color: #323530;
+	clear: both;
+}
+
+footer img.logo {
+	position: absolute;
+	top: -100px;
+	left: 0px;
+	right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 125px;
+}
+
+footer .content {
+	padding: 50px 15px 30px 15px;
+}
+
+footer .content > .header {
+	font-size: 1.75em;
+}
+
+footer .author {
+	padding: 10px;
+}
+
+@media screen and (max-width: 767px) {
+	footer .content > .header {
+		font-size: 1.35em;
+	}
+	footer .content > .header > .sub.header {
+		font-size: 0.85em;
+		margin-top: 15px !important;
+	}
+}

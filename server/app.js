@@ -58,18 +58,23 @@ var BASE_DATA = {};
                  Website pages
    ============================================= */
 
+app.use('/public', express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.locals.basedir = app.get('views');
 app.set('view engine', 'jade');
 
 app.get('/', function (req, res) {
-	res.render('404', {
-		baseData : BASE_DATA
+	var sample = _.sample(_.keys(BASE_DATA), 5);
+	var filter = {};
+	_.map(sample, function (code) {
+		filter[code] = BASE_DATA[code];
+	});
+	res.render('index', {
+		baseData : filter
 	});
 });
 
 var server = app.listen(3000);
-
 
 /* =============================================
           Generate Translate Base Data
@@ -145,8 +150,14 @@ var generateTranslateBaseData = function () {
 	}, function (err, baseDatum) {
 		baseDatum.map(function (baseData) {
 			_.mapObject(baseData, function (language, code) {
-				var dest = __dirname + '/generation_json/' + code + '.json';
-				fs.writeFile(dest, JSON.stringify(language), 'utf8', function (err) {});
+				var destA = __dirname + '/generation_json/' + code + '.json';
+				fs.writeFile(destA, JSON.stringify(language), 'utf8', function (err) {});
+				var destB = __dirname + '/crowdsourcing/' + code + '.json';
+				fs.exists(destB, function (exists) {
+					if (! exists) {
+						fs.writeFile(destB, JSON.stringify("{}"), 'utf8', function (err) {});
+					}
+				})
 			});
 		});
 	});
@@ -161,29 +172,21 @@ var readTranslateBaseData = function () {
 	fs.readdir(__dirname + '/generation_json/', function (err, files) {
 		var jsonCache = new Array();
 		async.map(files, function (file, callback) {
-			async.waterfall([
-				// Check the Ext.name.
-				function (callback) {
-					if (path.extname(file) === '.json') {
-						callback(null, file);
-					} else {
-						callback('ERR_FILE_FORMAT', file);
-					}
-				},
+			// Check the Ext.name.
+			if (path.extname(file) === '.json') {
 				// Eval the json files in folder 'generation_json'.
-				function (file, callback) {
-					var fileSrc = path.normalize(__dirname + '/generation_json/' + file);
-					fs.readFile(fileSrc, 'utf-8', function (err, data) {
-						eval("BASE_DATA['" + path.basename(file, '.json') + "']=" + data);
-						callback(null);
-					});
-				}
-			], function (err) {
+				var fileSrc = path.normalize(__dirname + '/generation_json/' + file);
+				fs.readFile(fileSrc, 'utf-8', function (err, data) {
+					eval("BASE_DATA['" + path.basename(file, '.json') + "']=" + data);
+					callback(null);
+				});
+			} else {
 				callback(null);
-			});
+			}
+		}, function (err) {
+			console.log("The generated files has loaded completely.");
 		});
 	});
-	// console.log("The generated files has loaded completely.");
 };	
 
 /* =============================================
@@ -192,6 +195,7 @@ var readTranslateBaseData = function () {
 
 if (AUTO_REFRESH_ORIGINAL_TSV) {
 	generateTranslateBaseData();
+	readTranslateBaseData();
 } else {
 	readTranslateBaseData();
 }
