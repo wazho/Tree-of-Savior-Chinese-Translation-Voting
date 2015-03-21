@@ -142,7 +142,7 @@ html
 					$translation.replaceWith(HTML[1]);
 					$translation  = $('.submitTranslation.ui.modal');
 					eval(HTML[2]);
-					$translation.modal('attach events', 'button.button');
+					$translation.modal('attach events', '.detailConversation button.button');
 					$conversation.modal('show');
 				});
 			}
