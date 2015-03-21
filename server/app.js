@@ -19,18 +19,20 @@
                     Packages
    ============================================= */
 
-// Below is native library.
+// Below is native libraries.
 var readline = require('readline');
 var path     = require('path');
 var url      = require('url');
 var fs       = require('fs');
-// Below is 3rd-party library.
-var async    = require('async');
-var _        = require('underscore');
-var request  = require('request');
-var express  = require('express');
-var jade     = require('jade');
-var app      = express();
+// Below is 3rd-party libraries.
+var async            = require('async');
+var _                = require('underscore');
+var request          = require('request');
+var express          = require('express');
+var jade             = require('jade');
+var passport         = require('passport')
+var FacebookStrategy = require('passport-facebook').Strategy;
+var app              = express();
 
 /* =============================================
                 Global variables
@@ -55,6 +57,23 @@ var TSV_FILES  = {
 var BASE_DATA = {};
 
 /* =============================================
+             Facebook authentication
+   ============================================= */
+
+// passport.use(new FacebookStrategy({
+//     clientID: FACEBOOK_APP_ID,
+//     clientSecret: FACEBOOK_APP_SECRET,
+//     callbackURL: "http://www.example.com/auth/facebook/callback"
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//     User.findOrCreate(..., function(err, user) {
+//       if (err) { return done(err); }
+//       done(null, user);
+//     });
+//   }
+// ));
+
+/* =============================================
                  Website pages
    ============================================= */
 
@@ -72,6 +91,14 @@ app.get('/', function (req, res) {
 	res.render('index', {
 		baseData : filter
 	});
+});
+
+app.get('/login', function (req, res) {
+	res.render('login_fb');
+});
+
+app.use(function (req, res) {
+	res.status(400).redirect('/');
 });
 
 var server = app.listen(3000);

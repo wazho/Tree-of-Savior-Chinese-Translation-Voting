@@ -2,6 +2,8 @@ html, body {
 	height: 100%;
 }
 
+/* Header */
+
 header {
 	height: 300px;
 	overflow: hidden;
@@ -10,11 +12,39 @@ header {
 	background-position: center center;
 }
 
-@media (max-width: 1500px) {
+header .container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+header .container .title {
+	position: absolute;
+	bottom: 20px;
+	padding: 15px 30px 15px 0px;
+	background-color: rgba(0, 0, 0, 0.45);
+	border-radius: 0px 10px 10px 0px;
+}
+
+header .container .title .word {
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 3em;
+	padding-left: 30px;
+}
+
+@media screen and (max-width: 1500px) {
 	header {
 		background-size: 1500px;
 	}
 }
+
+@media screen and (max-width: 767px) {
+	header .container .title .word {
+		font-size: 2em;
+	}
+}
+
+/* Body */
 
 body > div.wrapper {
 	min-height: 100%;
@@ -34,14 +64,6 @@ body > div.wrapper {
 div.tableBinder label {
 	font-size: 1.35em !important;
 	letter-spacing: 0.5em;
-}
-
-div.tableContainer {
-	overflow: scroll;
-}
-
-div.tableContainer table {
-	min-width: 650px;
 }
 
 footer {
@@ -81,4 +103,12 @@ footer .author {
 		font-size: 0.85em;
 		margin-top: 15px !important;
 	}
+}
+
+/* Fixed some Semantic-UI */
+
+.ui.header .ui.label {
+	font-size: 0.85em !important;
+	padding: 0.25em 0.8em !important;
+	margin: 0;
 }
