@@ -1,5 +1,4 @@
 div.ui.fullscreen.modal.detailConversation
-	i.close.icon
 	div.header 編號: #{code}
 	div.content
 		div.description
@@ -45,8 +44,47 @@ div.ui.fullscreen.modal.detailConversation
 				button.ui.facebook.button
 					i.facebook.icon
 					| 登入 Facebook 開始協助翻譯
-		else
-			button.ui.green.button
-				i.pencil.icon
-				| 我要提交翻譯版本
+		//- else
+		//- 	button.ui.green.button
+		//- 		i.pencil.icon
+		//- 		| 我要提交翻譯版本
+		button.ui.green.button
+			i.pencil.icon
+			| 我要提交翻譯版本
 		div.ui.button 關閉視窗
+div.ui.modal.submitTranslation
+	div.header 編號: #{code}
+	div.content
+		div.description
+			form.ui.form.translationFrom
+				div.field
+					textarea(name='translation')
+	div.actions
+		button.ui.green.button(onclick="submitTranslation('" + code + "');")
+			i.send.icon
+			| 確定送出
+		div.ui.button 關閉視窗
+script.
+	// Submit the form.
+	function submitTranslation(code) {
+		ajaxSubmitTranslation(code, function (data) {
+			console.log(data);
+		});
+	}
+	function ajaxSubmitTranslation(code, callback) {
+		$.ajax(
+			{
+				url     : '/conversation/' + code + '/translation',
+				type    : 'POST',
+				data    : $('form.translationFrom').serialize(),
+				error   : function () {
+					var data = { type: 'ERR_TIMEOUT' };
+					callback(data);
+				},
+				success : function (data) {
+					callback(data);
+				},
+				timeout : 5000
+			}
+		);
+	}

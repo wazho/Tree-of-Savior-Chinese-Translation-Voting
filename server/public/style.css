@@ -2,6 +2,14 @@ html, body {
 	height: 100%;
 }
 
+.cursor.pointer {
+	cursor: pointer;
+}
+
+.margin.reset {
+	margin: 0;
+}
+
 /* Header */
 
 header {
@@ -64,7 +72,7 @@ body > .wrapper > .container {
 	}
 }
 
-.tableBinder label {
+.tableContainer label {
 	font-size: 1.35em !important;
 	letter-spacing: 0.5em;
 }

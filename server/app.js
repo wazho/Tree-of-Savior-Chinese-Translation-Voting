@@ -87,7 +87,6 @@ app.get('/', function (req, res) {
 	_.map(sample, function (code) {
 		filter[code] = BASE_DATA[code];
 	});
-	console.log(user);
 	res.render('index', {
 		baseData : filter,
 		user     : user
@@ -99,7 +98,7 @@ app.get('/login', function (req, res) { res.redirect('/auth/facebook'); });
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
 
-// Conversation detail.
+// Get the conversation detail.
 app.get('/conversation/:code', function (req, res) {
 	async.waterfall([
 		// User checking.
@@ -107,6 +106,7 @@ app.get('/conversation/:code', function (req, res) {
 			var user = req.user;
 			callback(null, user);
 		},
+		// Get the original conversations.
 		function (user, callback) {
 			var code = req.params && req.params.code;
 			if (code) {
@@ -116,6 +116,7 @@ app.get('/conversation/:code', function (req, res) {
 				callback('ERR_CODE_NOT_EXIST');
 			}
 		},
+		// Get the crowdsourcing translations.
 		function (code, conversations, callback) {
 			var fileSrc = path.normalize(__dirname + '/crowdsourcing/' + code + '.json');
 			fs.readFile(fileSrc, 'utf-8', function (err, data) {
@@ -126,6 +127,73 @@ app.get('/conversation/:code', function (req, res) {
 					callback('ERR_CODE_FILE_NOT_EXIST');
 				}
 			});
+		}
+	], function (err, code, conversations, translations) {
+		if (! err) {
+			res.render('detail', {
+				code          : code,
+				conversations : conversations,
+				translations  : translations
+			});
+		} else {
+			res.send(err);
+		}
+	});
+});
+// Create a new translation.
+app.post('/conversation/:code/translation', function (req, res) {
+	async.waterfall([
+		// User checking.
+		function (callback) {
+			if (req.user) {
+				var user = req.user;
+				callback(null, user);
+			} else {
+				callback('ERR_NOT_LOGGED_IN');
+			}
+		},
+		// Get the crowdsourcing translations.
+		function (user, callback) {
+			var code = req.params && req.params.code;
+			if (code) {
+				callback(null, user, code);
+			} else {
+				callback('ERR_CODE_NOT_EXIST');
+			}
+		},
+		// Get the crowdsourcing translations.
+		function (user, callback) {
+			var translation = req.body && req.body.translation;
+			if (translation && translation.match(/^.+$/)) {
+				callback(null, user, code, translation);
+			} else {
+				callback('ERR_CODE_NOT_EXIST');
+			}
+		},
+		// Get the crowdsourcing translations.
+		function (user, code, translation, callback) {
+			var fileSrc = path.normalize(__dirname + '/crowdsourcing/' + code + '.json');
+			fs.readFile(fileSrc, 'utf-8', function (err, data) {
+				if (! err) {
+					eval("var translations = " + data + ";");
+					callback(null, user, code, translation, translations);
+				} else {
+					callback('ERR_CODE_FILE_NOT_EXIST');
+				}
+			});
+		},
+		// Check this user already wrote translation or not.
+		function (user, code, translation, translations, callback) {
+			console.log(user, code, translation, translations);
+			// var fileSrc = path.normalize(__dirname + '/crowdsourcing/' + code + '.json');
+			// fs.readFile(fileSrc, 'utf-8', function (err, data) {
+			// 	if (! err) {
+			// 		eval("var translations = " + data + ";");
+			// 		callback(null, code, conversations, translations);
+			// 	} else {
+			// 		callback('ERR_CODE_FILE_NOT_EXIST');
+			// 	}
+			// });
 		}
 	], function (err, code, conversations, translations) {
 		if (! err) {

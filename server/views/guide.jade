@@ -1,11 +1,10 @@
 div.ui.orange.segment
 	div.ui.two.column.stackable.grid
 		div.center.aligned.column
-			button.ui.large.orange.fluid.button(onclick="$('.guideBook').modal('show');") 翻譯注意事項
+			button.ui.large.orange.fluid.button(onclick="console.log($('#guideBook')); $('#guideBook').modal('show');") 翻譯注意事項
 		div.center.aligned.column
 			button.ui.large.orange.fluid.button 目前整體進度
-
-div.ui.modal.guideBook
+div#guideBook.ui.modal
 	i.close.icon
 	div.header 翻譯注意事項
 	div.content
@@ -36,3 +35,10 @@ div.ui.modal.guideBook
 						| 在原文句子中會見到如 
 						div.ui.orange.label {img xxx 40 40}
 						|  等文字，在實際遊戲會轉為「圖像 icon」。請您在翻譯時保留其出現在合適的位置。
+			h2.ui.header
+				i.tree.icon
+				div.content 翻譯注意事項（三）
+					div.sub.header
+						| 由於標點符號有半形全形之分。除特殊情況外，請主要以 
+						div.ui.orange.label ，。？、：；「」『』（）
+						|  作為本次翻譯的標準依據。

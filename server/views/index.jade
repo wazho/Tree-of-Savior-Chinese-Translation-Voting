@@ -14,7 +14,7 @@ html
 
 	body
 		div.wrapper
-			include header.jade
+			include template/header.jade
 			div.container
 				div.ui.two.column.stackable.grid
 					div.ten.wide.center.aligned.column
@@ -37,7 +37,7 @@ html
 					div.six.wide.center.aligned.column
 						div.guides
 							include guide.jade
-				div.ui.green.segment.tableBinder
+				div.ui.green.segment.tableContainer
 					div.ui.three.column.stackable.grid
 						div.center.aligned.column
 							div.ui.checkbox
@@ -54,7 +54,8 @@ html
 					div.ui.horizontal.divider
 						i.setting.icon
 					button.ui.fluid.massive.green.button(onclick="$('.tableContainer').addClass('loading'); location.reload();") 換新一組
-				div.ui.yellow.segment.tableContainer
+					div.ui.horizontal.divider
+						i.dashboard.icon
 					table.ui.striped.celled.structured.table
 						thead
 							tr
@@ -81,10 +82,11 @@ html
 									td -
 									td -
 									td -
-									td.center.aligned(onclick="detailConversation('" + code + "');")
-										i.add.circle.icon
+									td.center.aligned.cursor.pointer(onclick="detailConversation('" + code + "');")
+										button.ui.circular.icon.green.button.margin.reset
+											i.add.icon
 		include detail.jade
-		include footer.jade
+		include template/footer.jade
 		script.
 			// Random image for header screenshot.
 			$('header').css('background-image', 'url(/public/images/screenshots/' + Math.floor(Math.random() * 5 + 1) + '.jpg)');
@@ -132,11 +134,16 @@ html
 			// Fullscreen dialog for detail of conversation.
 			function detailConversation(code) {
 				ajaxGetConversation(code, function (data) {
-					var $modal = $('.detailConversation.ui.modal'),
-						HTML   = $.parseHTML(data, null, true);
-					$modal.replaceWith(HTML[0]);
-					$modal = $('.detailConversation.ui.modal');
-					$modal.modal('show');
+					var $conversation = $('.detailConversation.ui.modal'),
+						$translation  = $('.submitTranslation.ui.modal')
+						HTML          = $.parseHTML(data, null, true);
+					$conversation.replaceWith(HTML[0]);
+					$conversation = $('.detailConversation.ui.modal');
+					$translation.replaceWith(HTML[1]);
+					$translation  = $('.submitTranslation.ui.modal');
+					eval(HTML[2]);
+					$translation.modal('attach events', 'button.button');
+					$conversation.modal('show');
 				});
 			}
 		script.
