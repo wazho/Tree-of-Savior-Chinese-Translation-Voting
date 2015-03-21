@@ -1,6 +1,8 @@
 html
 	head
 		title 救世主之樹 - 國際伺服器 臺灣繁體中文群眾外包翻譯
+		// Favicon.
+		link(rel='shortcut icon', type='image/png', href='/public/images/favicon.ico')
 		// Semantic CSS.
 		link(rel='stylesheet', href='/public/libs/Semantic-UI-1.11.4/semantic.min.css')
 		// Default CSS.
@@ -14,49 +16,27 @@ html
 		div.wrapper
 			include header.jade
 			div.container
-				div.ui.blue.segment
-					if user
-						h2.ui.center.aligned.header
-							img.ui.circular.image(src='http://graph.facebook.com/' + user.id + '/picture?type=square')
-							div.content 您好呀，#{user.name}
-								div.sub.header 一起來協助翻譯工作吧！
-					else
-						div.ui.two.column.stackable.grid
-							div.center.aligned.column
-								a(href='login')
-									button.ui.facebook.button
-										i.facebook.icon
-										| 使用 Facebook 登入
-							div.left.aligned.column
-								h3.ui.header 為什麼要用 FB 登入？
-									div.sub.header 為了降低玩家灌水與匿名性犯罪的比率，請每位玩家都須使用 Facebook 進行登入。
-				div.ui.orange.segment
-					h2.ui.header
-						i.tree.icon
-						div.content 如何開始協助翻譯
-							div.sub.header
-								| 您可以選擇主動提交翻譯內容，亦或是在其他玩家已提交的翻譯中，選出你最中意、最符合本國語言習慣的句子即可。
-					h2.ui.header
-						i.tree.icon
-						div.content 請遵守網路禮儀
-							div.sub.header
-								| 若有惡意操作或散播不雅言語，本站將會將您的帳號禁止訪問、移除所有資訊並且公佈 ID。
-					h2.ui.header
-						i.tree.icon
-						div.content 翻譯注意事項（一）
-							div.sub.header
-								| 在原文句子中會見到 
-								div.ui.orange.label {nl}
-								|  的文字，在實際遊戲會轉為「換行 new line」。請您在翻譯時保留 
-								div.ui.orange.label {nl}
-								|  出現在合適的位置，只要符合本國語言習慣，換行是您可以自由控制刪減的。
-					h2.ui.header
-						i.tree.icon
-						div.content 翻譯注意事項（二）
-							div.sub.header
-								| 在原文句子中會見到如 
-								div.ui.orange.label {img xxx 40 40}
-								|  等文字，在實際遊戲會轉為「圖像 icon」。請您在翻譯時保留其出現在合適的位置。
+				div.ui.two.column.stackable.grid
+					div.ten.wide.center.aligned.column
+						div.ui.blue.segment
+							if user
+								h2.ui.center.aligned.header
+									img.ui.circular.image(src='http://graph.facebook.com/' + user.id + '/picture?type=square')
+									div.content 您好呀，#{user.name}
+										div.sub.header 一起來協助翻譯工作吧！
+							else
+								div.ui.stackable.grid
+									div.six.wide.center.aligned.column
+										a(href='login')
+											button.ui.facebook.button
+												i.facebook.icon
+												| 登入 Facebook
+									div.ten.wide.left.aligned.column
+										h3.ui.header 為什麼要用 Facebook 登入？
+											div.sub.header 為了降低玩家灌水與匿名性犯罪的比率，請每位玩家都須使用 Facebook 進行登入。
+					div.six.wide.center.aligned.column
+						div.guides
+							include guide.jade
 				div.ui.green.segment.tableBinder
 					div.ui.three.column.stackable.grid
 						div.center.aligned.column
