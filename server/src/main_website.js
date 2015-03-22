@@ -30,8 +30,8 @@ app.get('/', function (req, res) {
 					if (! err) {
 						eval("var translations = " + data + ";");
 						// Sort by assentient counts descending then choose top 3 assentient translations.
-						translations = _.sortBy(translations, function (translations) {
-							return (translations.assentients) ? (- translations.assentients.length) : 0;
+						translations = _.sortBy(translations, function (translation) {
+							return (translation.assentients) ? (- translation.assentients.length) : 0;
 						});
 						var top3Translations = [translations[0] || {}, translations[1] || {}, translations[2] || {}];
 						filters[code].translations = top3Translations;
@@ -85,6 +85,10 @@ app.get('/conversation/:code', function (req, res) {
 			fs.readFile(fileSrc, 'utf-8', function (err, data) {
 				if (! err) {
 					eval("var translations = " + data + ";");
+					// Sort by assentient counts descending.
+					translations = _.sortBy(_.pairs(translations), function (translation) {
+						return (translation[1].assentients) ? (- translation[1].assentients.length) : 0;
+					});
 					callback(null, user, code, conversations, translations);
 				} else {
 					callback('ERR_CODE_FILE_NOT_EXIST');

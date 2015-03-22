@@ -34,17 +34,17 @@ div.ui.fullscreen.modal.detailConversation
 					div.ui.comments
 						div.ui.horizontal.divider
 							i.angle.double.down.circular.icon
-						each translation, translator in translations
+						each translation in translations
 							div.translationContainer
 								div.comment
 									a.avatar
-										img(src='http://graph.facebook.com/' + translator + '/picture?type=square')
+										img(src='http://graph.facebook.com/' + translation[0] + '/picture?type=square')
 									div.content
 										div.metadata
-											span.assentients 獲得 #{translation.assentients.length} 
+											span.assentients 獲得 #{translation[1].assentients.length} 
 												i.thumbs.outline.up.icon
 										div.text
-											div.conversation #{translation.conversation}
+											div.conversation #{translation[1].conversation}
 								div.likeContainer
 									button.ui.blue.fluid.button
 										i.thumbs.outline.up.icon
