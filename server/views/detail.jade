@@ -27,10 +27,16 @@ div.ui.fullscreen.modal.detailConversation
 			if translations
 				div.translationsContainer
 					div.hint
-						div.ui.statistic
-							div.label 目前已有
-							div.value #{Object.keys(translations).length} 位
-							div.label 玩家為此句提供了翻譯版本
+						if Object.keys(translations).length
+							div.ui.statistic
+								div.label 目前已有
+								div.value #{Object.keys(translations).length} 位
+								div.label 玩家為此句提供了翻譯版本
+						else
+							div.ui.statistic
+								div.label 目前無任何翻譯
+								div.value :(
+								div.label 快來協助翻譯吧
 					div.ui.comments
 						div.ui.horizontal.divider
 							i.angle.double.down.circular.icon
@@ -51,15 +57,19 @@ div.ui.fullscreen.modal.detailConversation
 										| 投他一票！
 							div.ui.divider
 	div.actions
-		if ! user
+		if user === 'GUEST'
 			a(href='login')
 				button.ui.facebook.button
 					i.facebook.icon
 					| 登入 Facebook 開始協助翻譯
-		else
+		else if ! everTranslated
 			button.ui.green.submit.button
 				i.pencil.icon
 				| 我要提交翻譯版本
+		else
+			button.ui.green.submit.disabled.button
+				i.pencil.icon
+				| 已提交過翻譯版本
 		div.ui.button 關閉視窗
 div.ui.modal.submitTranslation
 	div.header 編號: #{code}

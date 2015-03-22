@@ -86,22 +86,36 @@ app.get('/conversation/:code', function (req, res) {
 				if (! err) {
 					eval("var translations = " + data + ";");
 					// Sort by assentient counts descending.
-					translations = _.sortBy(_.pairs(translations), function (translation) {
-						return (translation[1].assentients) ? (- translation[1].assentients.length) : 0;
-					});
+					translations = {
+						// Unsorting.
+						_json  : translations,
+						// Sorting.
+						_array : _.sortBy(_.pairs(translations), function (translation) {
+							return (translation[1].assentients) ? (- translation[1].assentients.length) : 0;
+						})
+					};
 					callback(null, user, code, conversations, translations);
 				} else {
 					callback('ERR_CODE_FILE_NOT_EXIST');
 				}
 			});
+		},
+		// Check user had translated or not.
+		function (user, code, conversations, translations, callback) {
+			if (translations._json[user.id]) {
+				callback(null, user, code, conversations, translations._array, true);
+			} else {
+				callback(null, user, code, conversations, translations._array, false);
+			}
 		}
-	], function (err, user, code, conversations, translations) {
+	], function (err, user, code, conversations, translations, translated) {
 		if (! err) {
 			res.render('detail', {
-				user          : user,
-				code          : code,
-				conversations : conversations,
-				translations  : translations
+				user           : user,
+				code           : code,
+				conversations  : conversations,
+				translations   : translations,
+				everTranslated : translated
 			});
 		} else {
 			res.send(err);
