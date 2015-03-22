@@ -10,6 +10,10 @@ html, body {
 	margin: 0;
 }
 
+.absolute.hide {
+	display: none;
+}
+
 .break.all {
 	word-break: break-all;
 }
@@ -76,13 +80,31 @@ body > .wrapper > .container {
 	}
 }
 
+.github img {
+	position: fixed;
+	top: 0;
+	left: 0;
+	border: 0;
+	z-index: 99;
+}
+
+@media screen and (max-width: 767px) {
+	.github {
+		display: none;
+	}
+}
+
+.tableContainer {
+	margin-bottom: 100px !important;
+}
+
 .tableContainer label {
 	font-size: 1.35em !important;
 	letter-spacing: 0.5em;
 }
 
-.tableContainer {
-	margin-bottom: 100px !important;
+.tableContainer > button {
+	letter-spacing: 0.25em;
 }
 
 /* Conversation dialog */

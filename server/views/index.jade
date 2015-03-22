@@ -13,6 +13,9 @@ html
 		script(src='/public/libs/Semantic-UI-1.11.4/semantic.min.js')
 
 	body
+		div.github
+			a(href='https://github.com/grass0916/Tree-of-Savior-Chinese-Translation-Voting', target='_blank')
+				img(src='/public/images/github_ribbon.png', alt='Fork me on GitHub')
 		div.wrapper
 			include template/header.jade
 			div.container
@@ -28,7 +31,7 @@ html
 								div.ui.stackable.grid
 									div.six.wide.center.aligned.column
 										a(href='login')
-											button.ui.facebook.button
+											button.ui.facebook.button(onclick="$('.tableContainer').addClass('loading');")
 												i.facebook.icon
 												| 登入 Facebook
 									div.ten.wide.left.aligned.column
@@ -53,7 +56,7 @@ html
 								label 顯示英文
 					div.ui.horizontal.divider
 						i.setting.icon
-					button.ui.fluid.massive.green.button(onclick="$('.tableContainer').addClass('loading'); location.reload();") 換新一組
+					button.ui.fluid.massive.green.button(onclick="$('.tableContainer').addClass('loading'); location.reload();") 換新一組翻譯
 					div.ui.horizontal.divider
 						i.dashboard.icon
 					table.ui.striped.celled.structured.table
@@ -78,8 +81,8 @@ html
 										else
 											td.disabled.center.aligned 暫無資料
 									each translation in types.translations
-										if translation.conversation
-											td #{translation.conversation}
+										if translation.length
+											td #{translation[1].conversation}
 										else
 											td.disabled.center.aligned 從缺
 									td.center.aligned.cursor.pointer(onclick="detailConversation('" + code + "');")
@@ -141,9 +144,28 @@ html
 					$conversation = $('.detailConversation.ui.modal');
 					$translation.replaceWith(HTML[1]);
 					$translation  = $('.submitTranslation.ui.modal');
-					eval(HTML[2]);
 					$translation.modal('attach events', '.detailConversation button.submit.button');
 					$conversation.modal('show');
+				});
+			}
+			// Submit the form to write the translation.
+			function writeTranslation(code) {
+				ajaxSubmitTranslation(code, function (data) {
+					if (data === 'SUCCESS') {
+						detailConversation(code);
+					} else {
+						console.log(data);
+					}
+				});
+			}
+			// Like one translation.
+			function likeTranslation(code, translator) {
+				ajaxLikeTranslation(code, translator, function (data) {
+					if (data === 'SUCCESS') {
+						detailConversation(code);
+					} else {
+						console.log(data);
+					}
 				});
 			}
 		script.
@@ -159,7 +181,40 @@ html
 						success : function (data) {
 							callback(data);
 						},
-						timeout : 5000
+						timeout : 10000
+					}
+				);
+			}
+			function ajaxSubmitTranslation(code, callback) {
+				$.ajax(
+					{
+						url     : '/conversation/' + code + '/translation',
+						type    : 'POST',
+						data    : $('form.translationFrom').serialize(),
+						error   : function () {
+							var data = { type: 'ERR_TIMEOUT' };
+							callback(data);
+						},
+						success : function (data) {
+							callback(data);
+						},
+						timeout : 10000
+					}
+				);
+			}
+			function ajaxLikeTranslation(code, translator, callback) {
+				$.ajax(
+					{
+						url     : '/conversation/' + code + '/translation/' + translator + '/like',
+						type    : 'PUT',
+						error   : function () {
+							var data = { type: 'ERR_TIMEOUT' };
+							callback(data);
+						},
+						success : function (data) {
+							callback(data);
+						},
+						timeout : 10000
 					}
 				);
 			}

@@ -29,12 +29,16 @@ app.get('/', function (req, res) {
 				fs.readFile(fileSrc, 'utf-8', function (err, data) {
 					if (! err) {
 						eval("var translations = " + data + ";");
-						// Sort by assentient counts descending then choose top 3 assentient translations.
-						translations = _.sortBy(translations, function (translation) {
-							return (translation.assentients) ? (- translation.assentients.length) : 0;
-						});
-						var top3Translations = [translations[0] || {}, translations[1] || {}, translations[2] || {}];
-						filters[code].translations = top3Translations;
+						// Sort by assentient counts descending.
+						translations = {
+							// Unsorting.
+							_json  : translations,
+							// Sorting.
+							_array : _.sortBy(_.pairs(translations), function (translation) {
+								return (translation[1].assentients) ? (- translation[1].assentients.length) : 0;
+							})
+						};
+						filters[code].translations = [translations._array[0] || [], translations._array[1] || [], translations._array[2] || []];
 						callback(null);
 					} else {
 						callback('ERR_CODE_FILE_NOT_EXIST');
@@ -134,7 +138,7 @@ app.post('/conversation/:code/translation', function (req, res) {
 				callback('ERR_NOT_LOGGED_IN');
 			}
 		},
-		// Get the crowdsourcing translations.
+		// Check the params.
 		function (user, callback) {
 			var code = req.params && req.params.code;
 			if (code) {
@@ -143,7 +147,7 @@ app.post('/conversation/:code/translation', function (req, res) {
 				callback('ERR_CODE_NOT_EXIST');
 			}
 		},
-		// Get the crowdsourcing translations.
+		// Check the submitted form.
 		function (user, code, callback) {
 			var translation = req.body && req.body.translation;
 			if (translation && translation.match(/^.+$/)) {
@@ -176,7 +180,7 @@ app.post('/conversation/:code/translation', function (req, res) {
 				var crowdsourcingDest = __dirname + '/crowdsourcing/' + code + '.json';
 				fs.writeFile(crowdsourcingDest, JSON.stringify(translations), 'utf8', function (err) {
 					if (! err) {
-						callback('TEMP');
+						callback(null, code);
 					} else {
 						callback('ERR_WRITE_TRANSLATATION_FAIL');
 					}
@@ -185,13 +189,74 @@ app.post('/conversation/:code/translation', function (req, res) {
 				callback('ERR_EVER_TRANSLATED');
 			}
 		}
-	], function (err, code, conversations, translations) {
+	], function (err, code) {
 		if (! err) {
-			res.render('detail', {
-				code          : code,
-				conversations : conversations,
-				translations  : translations
+			res.send('SUCCESS');
+		} else {
+			res.send(err);
+		}
+	});
+});
+// Like a translation.
+app.put('/conversation/:code/translation/:translator/like', function (req, res) {
+	async.waterfall([
+		// User checking.
+		function (callback) {
+			if (req.user) {
+				var user = req.user;
+				callback(null, user);
+			} else {
+				callback('ERR_NOT_LOGGED_IN');
+			}
+		},
+		// Check the params.
+		function (user, callback) {
+			var code       = req.params && req.params.code,
+				translator = req.params && req.params.translator;
+			if (code && translator) {
+				callback(null, user, code, translator);
+			} else if (! code) {
+				callback('ERR_CODE_NOT_EXIST');
+			} else {
+				callback('ERR_TRANSLATOR_NOT_EXIST');
+			}
+		},
+		// Get the crowdsourcing translations.
+		function (user, code, translator, callback) {
+			var fileSrc = path.normalize(__dirname + '/crowdsourcing/' + code + '.json');
+			fs.readFile(fileSrc, 'utf-8', function (err, data) {
+				if (! err) {
+					eval("var translations = " + data + ";");
+					callback(null, user, code, translator, translations);
+				} else {
+					callback('ERR_CODE_FILE_NOT_EXIST');
+				}
 			});
+		},
+		// Like the translation into assentients.
+		function (user, code, translator, translations, callback) {
+			// Have not sumbit the conversation of this code.
+			if (translations[translator]) {
+				if (_.indexOf(translations[translator].assentients, user.id) === -1) {
+					translations[translator].assentients.push(user.id);
+					var crowdsourcingDest = __dirname + '/crowdsourcing/' + code + '.json';
+					fs.writeFile(crowdsourcingDest, JSON.stringify(translations), 'utf8', function (err) {
+						if (! err) {
+							callback(null, code);
+						} else {
+							callback('ERR_WRITE_TRANSLATATION_FAIL');
+						}
+					});
+				} else {
+					callback('ERR_EVER_LIKED_TRANSATION');
+				}
+			} else {
+				callback('ERR_TRANSLATOR_NOT_EXIST');
+			}
+		}
+	], function (err, code) {
+		if (! err) {
+			res.send('SUCCESS');
 		} else {
 			res.send(err);
 		}
