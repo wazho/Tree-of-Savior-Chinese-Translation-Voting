@@ -52,9 +52,14 @@ div.ui.fullscreen.modal.detailConversation
 										div.text
 											div.conversation #{translation[1].conversation}
 								div.likeContainer
-									button.ui.blue.fluid.button(onclick="likeTranslation('" + code + "', '" + translation[0] + "');")
-										i.thumbs.outline.up.icon
-										| 投他一票！
+									if translation[1].liked !== true
+										button.ui.blue.fluid.button(onclick="likeTranslation('" + code + "', '" + translation[0] + "');")
+											i.thumbs.outline.up.icon
+											| 投他一票！
+									else
+										button.ui.blue.fluid.disabled.button
+											i.thumbs.outline.up.icon
+											| 您已經投過了
 							div.ui.divider
 	div.actions
 		if user === 'GUEST'

@@ -11,8 +11,8 @@ app.get('/', function (req, res) {
 		},
 		// Filtering part of conversions to layout.
 		function (user, callback) {
-			// var sample = _.sample(_.keys(BASE_DATA), DEFAULT_CONVERSATIONS_PER_PAGE);
-			var sample = ['QUEST_LV_0100_20150312_001086', 'ETC_20150312_001769', 'QUEST_LV_0100_20150312_001494']; // This line is assigned to test.
+			var sample = _.sample(_.keys(BASE_DATA), DEFAULT_CONVERSATIONS_PER_PAGE);
+			// var sample = ['QUEST_LV_0100_20150312_001086', 'ETC_20150312_001769', 'QUEST_LV_0100_20150312_001494']; // This line is assigned to test.
 			var filters = {};
 			_.map(sample, function (code) {
 				filters[code] = {};
@@ -103,6 +103,13 @@ app.get('/conversation/:code', function (req, res) {
 					callback('ERR_CODE_FILE_NOT_EXIST');
 				}
 			});
+		},
+		// Add the attribute about liked translation.
+		function (user, code, conversations, translations, callback) {
+			_.map(translations._array, function (translation) {
+				translation[1].liked = (_.indexOf(translation[1].assentients, user.id) === -1) ? false : true;
+			});
+			callback(null, user, code, conversations, translations);
 		},
 		// Check user had translated or not.
 		function (user, code, conversations, translations, callback) {
