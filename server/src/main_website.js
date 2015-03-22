@@ -275,7 +275,7 @@ app.use(function (req, res) {
 	res.status(400).redirect('/');
 });
 
-var server = app.listen(3000);
+var server = app.listen(LISTENING_PORT);
 
 /* =============================================
                Find or create user
