@@ -14,7 +14,12 @@ footer
 	//- 			i.setting.icon
 	//- 			div.content
 	//- 				a.inverted.header(href="http://www.facebook.com/TreeofSaviorZH") 救世主之樹 Tree of Savior 粉絲團（非官方）
-	//- 				div.description 
+	//- 				div.description
+	div.license
+		| 本站所使用之遊戲畫面為韓國遊戲開發、發行公司 IMC Games & Nexon 所擁有，僅研究學術用途無謀取獲利
 	div.author
 		h3.ui.center.aligned.inverted.header
-			a(href='http://salmon.tw', target='_blank') Salmon @ 2015.03
+			a(href='http://salmon.tw', target='_blank')
+				span.popup(data-content='土生土長台灣鮭', data-position='top center') Salmon @ 2015.03
+	script.
+		$('footer .popup').popup();

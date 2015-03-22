@@ -112,8 +112,8 @@ html
 				onChecked   : function () {
 					var group  = $(this).data('group');
 					var index  = $('th[data-group=' + group + ']').index('thead tr th') + 1;
-					var $thead = $('th[data-group=' + group + ']');
-					var $tbody = $('tbody tr td:nth-child(' + index + ')');
+					var $thead = $('th[data-group=' + group + ']'),
+						$tbody = $('tbody tr td:nth-child(' + index + ')');
 					$thead.show();
 					$tbody.show();
 					// Modify the session storage.
@@ -122,8 +122,8 @@ html
 				onUnchecked	: function () {
 					var group  = $(this).data('group');
 					var index  = $('th[data-group=' + group + ']').index('thead tr th') + 1;
-					var $thead = $('th[data-group=' + group + ']');
-					var $tbody = $('tbody tr td:nth-child(' + index + ')');
+					var $thead = $('th[data-group=' + group + ']'),
+						$tbody = $('tbody tr td:nth-child(' + index + ')');
 					$thead.hide();
 					$tbody.hide();
 					// Modify the session storage.
@@ -142,7 +142,7 @@ html
 					$translation.replaceWith(HTML[1]);
 					$translation  = $('.submitTranslation.ui.modal');
 					eval(HTML[2]);
-					$translation.modal('attach events', '.detailConversation button.button');
+					$translation.modal('attach events', '.detailConversation button.submit.button');
 					$conversation.modal('show');
 				});
 			}

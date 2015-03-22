@@ -44,13 +44,10 @@ div.ui.fullscreen.modal.detailConversation
 				button.ui.facebook.button
 					i.facebook.icon
 					| 登入 Facebook 開始協助翻譯
-		//- else
-		//- 	button.ui.green.button
-		//- 		i.pencil.icon
-		//- 		| 我要提交翻譯版本
-		button.ui.green.button
-			i.pencil.icon
-			| 我要提交翻譯版本
+		else
+			button.ui.green.submit.button
+				i.pencil.icon
+				| 我要提交翻譯版本
 		div.ui.button 關閉視窗
 div.ui.modal.submitTranslation
 	div.header 編號: #{code}

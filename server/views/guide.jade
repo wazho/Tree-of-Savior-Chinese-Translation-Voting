@@ -1,9 +1,14 @@
-div.ui.orange.segment
-	div.ui.two.column.stackable.grid
-		div.center.aligned.column
-			button.ui.large.orange.fluid.button(onclick="$('#guideBook').modal('show');") 翻譯注意事項
-		div.center.aligned.column
-			button.ui.large.orange.fluid.button 目前整體進度
+div.functionContainer
+	div.ui.orange.segment
+		div.ui.two.column.stackable.grid
+			div.center.aligned.column
+				button.ui.large.orange.fluid.button(onclick="$('#guideBook').modal('show');") 翻譯注意事項
+			div.center.aligned.column
+				div.popup(data-content='功能開發中', data-position='top center')
+					button.ui.large.orange.fluid.disabled.button 目前整體進度
+	script.
+		$('.functionContainer .popup').popup();
+
 div#guideBook.ui.modal
 	i.close.icon
 	div.header 翻譯注意事項
@@ -39,6 +44,6 @@ div#guideBook.ui.modal
 				i.tree.icon
 				div.content 翻譯注意事項（三）
 					div.sub.header
-						| 由於標點符號有半形全形之分。除特殊情況外，請主要以 
+						| 由於標點符號有半形全形之分。除特殊情況外，主要請以 
 						div.ui.orange.label ，。？、：；「」『』（）
 						|  作為本次翻譯的標準依據。
