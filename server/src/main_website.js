@@ -3,17 +3,56 @@
    ============================================= */
 
 app.get('/', function (req, res) {
-	// User checking.
-	var user = req.user;
-	// Filtering part of conversions to layout.
-	var sample = _.sample(_.keys(BASE_DATA), DEFAULT_CONVERSATIONS_PER_PAGE);
-	var filter = {};
-	_.map(sample, function (code) {
-		filter[code] = BASE_DATA[code];
-	});
-	res.render('index', {
-		baseData : filter,
-		user     : user
+	async.waterfall([
+		// User checking.
+		function (callback) {
+			var user = (req.user) ? req.user : 'GUEST';
+			callback(null, user);
+		},
+		// Filtering part of conversions to layout.
+		function (user, callback) {
+			// var sample = _.sample(_.keys(BASE_DATA), DEFAULT_CONVERSATIONS_PER_PAGE);
+			var sample = ['QUEST_LV_0100_20150312_001086', 'ETC_20150312_001769', 'QUEST_LV_0100_20150312_001494']; // This line is assigned to test.
+			var filters = {};
+			_.map(sample, function (code) {
+				filters[code] = {};
+				filters[code].originals = BASE_DATA[code];
+			});
+			callback(null, user, filters);
+		},
+		// Each conversation of filters need get own top 3 translations.
+		function (user, filters, callback) {
+			async.map(_.pairs(filters), function (filter, callback) {
+				var code         = filter[0],
+					conversation = filter[1];
+				var fileSrc = path.normalize(__dirname + '/crowdsourcing/' + code + '.json');
+				fs.readFile(fileSrc, 'utf-8', function (err, data) {
+					if (! err) {
+						eval("var translations = " + data + ";");
+						// Sort by assentient counts descending then choose top 3 assentient translations.
+						translations = _.sortBy(translations, function (translations) {
+							return (translations.assentients) ? (- translations.assentients.length) : 0;
+						});
+						var top3Translations = [translations[0] || {}, translations[1] || {}, translations[2] || {}];
+						filters[code].translations = top3Translations;
+						callback(null);
+					} else {
+						callback('ERR_CODE_FILE_NOT_EXIST');
+					}
+				});
+			}, function (err) {
+				if (! err) {
+					callback(null, user, filters);
+				} else {
+					callback(err);
+				}
+			});
+		}
+	], function (err, user, filters) {
+		res.render('index', {
+			user     : user,
+			baseData : filters
+		});	
 	});
 });
 
@@ -27,7 +66,7 @@ app.get('/conversation/:code', function (req, res) {
 	async.waterfall([
 		// User checking.
 		function (callback) {
-			var user = req.user;
+			var user = (req.user) ? req.user : 'GUEST';
 			callback(null, user);
 		},
 		// Get the original conversations.
@@ -87,12 +126,12 @@ app.post('/conversation/:code/translation', function (req, res) {
 			}
 		},
 		// Get the crowdsourcing translations.
-		function (user, callback) {
+		function (user, code, callback) {
 			var translation = req.body && req.body.translation;
 			if (translation && translation.match(/^.+$/)) {
 				callback(null, user, code, translation);
 			} else {
-				callback('ERR_CODE_NOT_EXIST');
+				callback('ERR_FORM_TRANSLATION');
 			}
 		},
 		// Get the crowdsourcing translations.
@@ -109,16 +148,24 @@ app.post('/conversation/:code/translation', function (req, res) {
 		},
 		// Check this user already wrote translation or not.
 		function (user, code, translation, translations, callback) {
-			console.log(user, code, translation, translations);
-			// var fileSrc = path.normalize(__dirname + '/crowdsourcing/' + code + '.json');
-			// fs.readFile(fileSrc, 'utf-8', function (err, data) {
-			// 	if (! err) {
-			// 		eval("var translations = " + data + ";");
-			// 		callback(null, code, conversations, translations);
-			// 	} else {
-			// 		callback('ERR_CODE_FILE_NOT_EXIST');
-			// 	}
-			// });
+			// Have not sumbit the conversation of this code.
+			if (! translations[user.id]) {
+				translations[user.id] = {
+					conversation : translation,
+					assentients  : [],
+					submit_time  : moment().format('YYYY-MM-DD HH:mm:ss')
+				};
+				var crowdsourcingDest = __dirname + '/crowdsourcing/' + code + '.json';
+				fs.writeFile(crowdsourcingDest, JSON.stringify(translations), 'utf8', function (err) {
+					if (! err) {
+						callback('TEMP');
+					} else {
+						callback('ERR_WRITE_TRANSLATATION_FAIL');
+					}
+				});
+			} else {
+				callback('ERR_EVER_TRANSLATED');
+			}
 		}
 	], function (err, code, conversations, translations) {
 		if (! err) {

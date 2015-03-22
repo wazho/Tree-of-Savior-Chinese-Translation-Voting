@@ -24,20 +24,32 @@ div.ui.fullscreen.modal.detailConversation
 										| 暫無資料
 				div.ui.horizontal.divider
 					img(src="/public/images/country/32/Taiwan.png")
-			if translations && translations.length
-				div.ui.comments
-					each translation in translations
-						div.comment
-							a.avatar
-								img(src='http://graph.facebook.com/' + translator + '/picture?type=square')
-							div.content
-								div.metadata
-									span.assentients 共有 #{translation.assentients.length} 人認同
-								div.text
-									div.conversation #{translation.conversation}
-			else
-				div.ui.message 暫無資料
-			// each translation, translator in { 4: { conversation: '這是對話筐筐', submit_time: 'xxxxx', assentients: [1,2,4] }, 7: { conversation: '這是對 2Ｍ', submit_time: 'xxxxx', assentients: [1,2,4,9,19] }}
+			if translations
+				div.translationsContainer
+					div.hint
+						div.ui.statistic
+							div.label 目前已有
+							div.value #{Object.keys(translations).length} 位
+							div.label 玩家為此句提供了翻譯版本
+					div.ui.comments
+						div.ui.horizontal.divider
+							i.angle.double.down.circular.icon
+						each translation, translator in translations
+							div.translationContainer
+								div.comment
+									a.avatar
+										img(src='http://graph.facebook.com/' + translator + '/picture?type=square')
+									div.content
+										div.metadata
+											span.assentients 獲得 #{translation.assentients.length} 
+												i.thumbs.outline.up.icon
+										div.text
+											div.conversation #{translation.conversation}
+								div.likeContainer
+									button.ui.blue.fluid.button
+										i.thumbs.outline.up.icon
+										| 投他一票！
+							div.ui.divider
 	div.actions
 		if ! user
 			a(href='login')
@@ -53,6 +65,14 @@ div.ui.modal.submitTranslation
 	div.header 編號: #{code}
 	div.content
 		div.description
+			div.ui.red.message
+				i.warning.sign.large.icon
+				| 每筆對話每人僅限提供一筆翻譯，目前不得修改編輯，請謹慎確認無誤後再行送出。
+			div.ui.orange.message
+				i.file.text.outline.large.icon
+				| 提交內容不得包含「換行 Enter」的字元，若需換行請遵守 
+				div.ui.orange.label.cursor.pointer(onclick="$('#guideBook').modal('show');") 翻譯規則
+				|  所述。
 			form.ui.form.translationFrom
 				div.field
 					textarea(name='translation')

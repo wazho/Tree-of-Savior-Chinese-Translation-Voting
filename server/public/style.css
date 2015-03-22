@@ -89,6 +89,20 @@ body > .wrapper > .container {
 	left: -10px;
 }
 
+.translationsContainer .hint {
+	text-align: center;
+}
+
+.translationsContainer .ui.comments {
+	margin: 0 auto;
+}
+
+.translationContainer .likeContainer {
+	cursor: pointer;
+	text-align: center;
+	margin-top: 15px;
+}
+
 /* Footer */
 
 footer {
@@ -138,8 +152,16 @@ footer .author {
 
 /* Fixed some Semantic-UI */
 
-.ui.header .ui.label {
+.ui.header .ui.label, .ui.message .ui.label {
 	font-size: 0.85em !important;
 	padding: 0.25em 0.8em !important;
 	margin: 0;
+}
+
+.ui.modal {
+	overflow: hidden;
+}
+
+.ui.comments .comment .avatar {
+	height: 2.5em !important;
 }
