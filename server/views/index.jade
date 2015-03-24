@@ -95,6 +95,10 @@ html
 			$('header').css('background-image', 'url(/public/images/screenshots/' + Math.floor(Math.random() * 5 + 1) + '.jpg)');
 			// Ban the all drag event.
 			$('img').on('dragstart', function (event) { event.preventDefault(); });
+			// Remove the passport-facebook logged-in successfullly, then remove the hash '#_=_' in url.
+			$(document).ready(function () {
+				window.history.replaceState('', document.title, window.location.pathname);
+			});
 		script.
 			// Semantic-UI Checkbox default value using session storage.
 			if (! sessionStorage.code) {
