@@ -184,8 +184,14 @@ app.post('/conversation/:code/translation', function (req, res) {
 					assentients  : [],
 					submit_time  : moment().format('YYYY-MM-DD HH:mm:ss')
 				};
-				var crowdsourcingDest = __dirname + '/crowdsourcing/' + code + '.json';
-				fs.writeFile(crowdsourcingDest, JSON.stringify(translations), 'utf8', function (err) {
+				// Create the folder.
+				var crowdsourcingPath = __dirname + '/crowdsourcing/';
+				fs.exists(crowdsourcingPath, function (exists) {
+					if (! exists) fs.mkdirSync(crowdsourcingPath);
+				});
+				// Write the JSON file.
+				var crowdsourcingDestination = crowdsourcingPath + code + '.json';
+				fs.writeFile(crowdsourcingDestination, JSON.stringify(translations), 'utf8', function (err) {
 					if (! err) {
 						callback(null, code);
 					} else {
@@ -246,8 +252,9 @@ app.put('/conversation/:code/translation/:translator/like', function (req, res) 
 			if (translations[translator]) {
 				if (_.indexOf(translations[translator].assentients, user.id) === -1) {
 					translations[translator].assentients.push(user.id);
-					var crowdsourcingDest = __dirname + '/crowdsourcing/' + code + '.json';
-					fs.writeFile(crowdsourcingDest, JSON.stringify(translations), 'utf8', function (err) {
+					// Write the JSON file.
+					var crowdsourcingDestination = __dirname + '/crowdsourcing/' + code + '.json';
+					fs.writeFile(crowdsourcingDestination, JSON.stringify(translations), 'utf8', function (err) {
 						if (! err) {
 							callback(null, code);
 						} else {
@@ -295,11 +302,15 @@ User.prototype.findOrCreateUser = function (profile, callback) {
 		gender      : profile.gender,
 		create_time : moment().format('YYYY-MM-DD HH:mm:ss')
 	};
-	var userDest = __dirname + '/users/' + user.id + '.json';
-	fs.exists(userDest, function (exists) {
-		if (! exists) {
-			fs.writeFile(userDest, JSON.stringify(user), 'utf8', function (err) {});
-		}
+	// Create the folder.
+	var usersPath = __dirname + '/users/';
+	fs.exists(usersPath, function (exists) {
+		if (! exists) fs.mkdirSync(crowdsourcingPath);
+	});
+	// Write the JSON file.
+	var usersDestination = usersPath + user.id + '.json';
+	fs.exists(usersDestination, function (exists) {
+		if (! exists) fs.writeFile(usersDestination, JSON.stringify(user), 'utf8', function (err) {});
 	});
 	callback(null, user);
 };
