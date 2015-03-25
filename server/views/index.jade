@@ -1,3 +1,4 @@
+doctype html
 html
 	head
 		title 救世主之樹 - 國際伺服器 臺灣繁體中文群眾外包翻譯
@@ -19,27 +20,29 @@ html
 		div.wrapper
 			include template/header.jade
 			div.container
-				div.ui.two.column.stackable.grid
-					div.ten.wide.center.aligned.column
-						div.ui.blue.segment
-							if user !== 'GUEST'
-								h2.ui.center.aligned.header
-									img.ui.circular.image(src='http://graph.facebook.com/' + user.id + '/picture?type=square')
-									div.content 您好呀，#{user.name}
-										div.sub.header 一起來協助翻譯工作吧！
-							else
-								div.ui.stackable.grid
-									div.six.wide.center.aligned.column
-										a(href='login')
-											button.ui.facebook.button(onclick="$('.tableContainer').addClass('loading');")
-												i.facebook.icon
-												| 登入 Facebook
-									div.ten.wide.left.aligned.column
-										h3.ui.header 為什麼要用 Facebook 登入？
-											div.sub.header 為降低灌水比率，請每位玩家都須使用 Facebook 進行登入。
-					div.six.wide.center.aligned.column
-						div.guides
-							include guide.jade
+				div.functionContainer
+					div.ui.two.column.stackable.grid
+						div.ten.wide.center.aligned.column
+							div.login
+								div.ui.blue.segment
+									if user !== 'GUEST'
+										h2.ui.center.aligned.header
+											img.ui.circular.image(src='http://graph.facebook.com/' + user.id + '/picture?type=square')
+											div.content 您好呀，#{user.name}
+												div.sub.header 一起來協助翻譯工作吧！
+									else
+										div.ui.stackable.grid
+											div.six.wide.center.aligned.column
+												a(href='login')
+													button.ui.facebook.button(onclick="$('.tableContainer').addClass('loading');")
+														i.facebook.icon
+														| 登入 Facebook
+											div.ten.wide.left.aligned.column
+												h3.ui.header 為什麼要用 Facebook 登入？
+													div.sub.header 為降低灌水比率，請每位玩家都須使用 Facebook 進行登入。
+						div.six.wide.center.aligned.column
+							div.guides
+								include guide.jade
 				div.ui.green.segment.tableContainer
 					div.ui.four.column.stackable.grid
 						div.center.aligned.column
@@ -67,8 +70,8 @@ html
 									option(value='SAMPLE_CONTINUOUS') 上下文連續
 							div.center.aligned.column
 								select.ui.fluid.dropdown(name='filter')
-									option(value='FILTER_ALL') 不限制
-									option(value='FILTER_UNTRANSLATED') 未被翻譯
+									option(value='FILTER_ALL') 不限制過濾
+									option(value='FILTER_UNTRANSLATED') 尚未翻譯
 									option(value='FILTER_TRANSLATED') 已被翻譯
 					div.ui.horizontal.divider
 						i.setting.icon
@@ -107,6 +110,8 @@ html
 		include detail.jade
 		include template/footer.jade
 		script.
+			// Active the popup.
+			$('.functionContainer .popup').popup();
 			// Random image for header screenshot.
 			$('header').css('background-image', 'url(/public/images/screenshots/' + Math.floor(Math.random() * 5 + 1) + '.jpg)');
 			// Ban the all drag event.

@@ -1,13 +1,10 @@
-div.functionContainer
-	div.ui.orange.segment
-		div.ui.two.column.stackable.grid
-			div.center.aligned.column
-				button.ui.large.orange.fluid.button(onclick="$('#guideBook').modal('show');") 翻譯注意事項
-			div.center.aligned.column
-				div.popup(data-content='功能開發中', data-position='top center')
-					button.ui.large.orange.fluid.disabled.button 目前整體進度
-	script.
-		$('.functionContainer .popup').popup();
+div.ui.orange.segment
+	div.ui.two.column.stackable.grid
+		div.center.aligned.column
+			button.ui.large.orange.fluid.button(onclick="$('#guideBook').modal('show');") 翻譯注意事項
+		div.center.aligned.column
+			div.popup(data-content='功能開發中', data-position='top center')
+				button.ui.large.orange.fluid.disabled.button 目前整體進度
 
 div#guideBook.ui.modal
 	i.close.icon
