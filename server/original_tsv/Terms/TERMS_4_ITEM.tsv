@@ -1,0 +1,533 @@
+작은 HP포션	Small HP Potion
+HP포션	HP Potion
+큰 HP포션	Big HP Potion
+작은 SP포션	Small SP Potion
+SP포션	SP Potion
+큰 SP포션	Big SP Potion
+스태미나 알약	Stamina Pill
+이동속도 증가 포션	Movement Increase Potion
+워프 주문서	Warp Scroll
+바루날레샤	Varnalesa
+발래리요나스	Valerijonas
+초브랠리스	Ciobrelis
+워시스	Uosis
+아말라스	Amalas
+아비에테	Aviete
+기슬로티스	Gyslotis
+요나졸레	Jonazole
+마이루나스	Mairunas
+라무넬레	Ramunele
+라오도넬리스	Raudonelis
+양파	Onion
+살라위야스	Salavijas
+딜겔레	Dilgele
+매두스	Medus
+누켈라	Nukela
+도토리	Acorn
+송로버섯	Truffle
+꽃빵	Flower Bun
+송이버섯	Pine Mushroom
+베조아르	Bezoar
+레드옥스	Red Ox
+건빵	Hardtack
+피렌트 열매	Firent Fruit
+망고스틴	Mangosteen
+복숭아	Peach
+수르스트뢰밍	Surströmming
+두리안	Durian
+딸기	Strawberry
+지혜의 열매	Wisdomberry
+레몬	Lemon
+만드라고라	Mandragora
+LV50 미션 포탈 소환서	Lv50 Mission Portal Scroll
+LV80 미션 포탈 소환서	Lv80 Mission Portal Scroll
+LV110 미션 포탈 소환서	Lv110 Mission Portal Scroll
+성수	Purewater
+홀리 파우더	Holy Powder
+마늘	Garlic
+포포리온 고기	Popolion
+클라페다 워프 주문서	Klaipeda Warp Scroll
+메달 충전 쿠폰	Medal Recharge Coupon
+해독제	Andidote
+벨하이더 먹이	Velhider Food
+호글란 먹이	Hoglan Food
+아르마 먹이	Arma Food
+광석 콜렉션	Ore Collection
+꽃 콜렉션	Flower Collection
+뼈 콜렉션	Bone Collection
+수정 콜렉션	Crytal Collection
+왕릉 콜렉션	Royal Tomb Collection
+코카트리스 콜렉션	Cockatrice Collection
+패러뮨 콜렉션	Paramune Collection
+테넷 성당 콜렉션	Tenet Chapel Collection
+유령 콜렉션	Ghost Collection
+모루	Anvil
+가이갈라스 카드	Gaigalas Card
+게이징 골렘 카드	Gorgon Card
+고르곤 카드	Gorgon Card
+골렘 카드	Golem Card
+그라이넨더 카드	Grinender Card
+글래스몰 카드	Glass_Mole Card
+긴클라스 카드	Ginklas Card
+네더보바인 카드	Netherbovine Card
+네크로벤터 카드	Necrovanter Card
+데드본 카드	Deadbone Card
+데블글로브 카드	Devilglove Card
+덴옵틱 카드	Denoptic Card
+드라페리운 카드	Rajatoad Card
+라바인피드 카드	Ravinepede Card
+라자토드 카드	Rajatoad Card
+락토르투가 카드	Rocktortuga Card
+렉시퍼 카드	Rexipher Card
+리버피드 카드	Reaverpede Card
+리카우스 카드	Rikaus Card
+리타스워트 카드	Rytaswort Card
+마스터 지니 카드	Genmagnus Card
+마인로더 카드	Mineloader Card
+말렛와이번 카드	Malletwyvern Card
+매그버크 카드	Magburk Card
+맨티켄 카드	Mushcaria Card
+머미가스트 카드	Mummyghast Card
+머슈카리아 카드	Mushcaria Card
+머지 카드	Merge Card
+모스템 카드	Mothstem Card
+모아 카드	Moa Card
+모야브루카 카드	Moyabruka Card
+몰디혼 카드	Moldyhorn Card
+몰렉 카드	Molich Card
+미노타우로스 카드	Minotaurs Card
+미르티스 카드	Mirtis Card
+베브라스피온 카드	Bebraspion Card
+베아카라스 카드	Bearkaras Card
+벨로차드 카드	Velorchard Card
+부베 투사 카드	Vubbe Fighter Card
+붉은 부베 투사 카드	Red Vubbe Fighter Card
+브람블 카드	Bramble Card
+비테레지나 카드	Biteregina Card
+사이클롭스 카드	Cyclops Card
+살티스터 카드	Saltistter Card
+샐러맨더 카드	Salamander Card
+섀도게일러 카드	Shadowgaoler Card
+석화고래 카드	Stone Whale Card
+쉬나임 카드	Shnayim Card
+스콜피오 카드	Scorpio Card
+스펙터 군주 카드	Specter Card
+쓰론위버 카드	Throneweaver Card
+아이언바움 카드	Ironbaum Card
+아콘 카드	Archon Card
+언낙커 카드	Unknocker Card
+에하트 카드	Achat Card
+엘라가노스 카드	Ellaganos Card
+예쿱 카드	Yekub Card
+요나졸렘 카드	Yonazolem Card
+우드스피릿 카드	Woodspirit Card
+웨어울프 카드	Werewolf Card
+유니콘 카드	Unicorn Card
+일티스워트 카드	Lltiswort Card
+자이언트 레드 우드 카드	Giantredwood Card
+채퍼리션 카드	Chapparition Card
+체이퍼 카드	Chafer Card
+카너버 카드	Carnivore Card
+캐러페이스 카드	Carapace Card
+캑터스벨 카드	Cactusvel Card
+케파치프틴 카드	Kepachieftain Card
+콜리멘시아 카드	Colimencia Card
+클라이멘 카드	Clymen Card
+투투 카드	Tutu Card
+툼로드 카드	Tomblord Card
+포아타 카드	Poata Card
+세콰이아 카드	Sequoia Card
+하르피아 카드	Harpeia Card
+허니핀 카드	Honeypin Card
+헬가세르클 카드	Helgacercle Card
+현혹의 스펙터 카드	Specter Card of Dazzle
+라자펄 카드	Rajapearl Card
+머쉬워트 카드	Mushwort Card
+코럽티드 카드	Corrupted Card
+레푸스 카드	Lepus Card
+스파르나스 카드	Sparnas Card
+스파나스맨 카드	Sparnasman Card
+확성기	Lound Speaker
+부베 마석	Vubbe Holystone
+하나밍 꽃잎	Hanaming Petal
+LV2 보물상자 열쇠	Lv2 Treasure Box Key
+LV3 보물상자 열쇠	Lv3 Treasure Box Key
+LV4 보물상자 열쇠	Lv4 Treasure Box Key
+LV5 보물상자 열쇠	Lv5 Treasure Box Key
+케파 줄기	Kepa Stem
+잎방개의 껍질	Skin of Leaf Bug
+치넨시 잎	Chinency Leaf
+인프로락터의 껍질	Skin of Infrorocktor
+츄파카브라 이빨	Chupacabra Tooth
+위버 더듬이	Weaver Feelers
+포쿠부 가죽	Pokubu Skin
+유코푸스 잎	Jukopus Leaf
+붉은 케파의 결정	Crystal of Red_Kepa
+부베족의 증표	Sign of Vubbe
+스톤오르카의 핵	Hack of Stoneorca
+수정거미 더듬이	Feelers of Crystal Spider
+에큐바이트 더듬이	Feelers of Yekubite
+판토족의 뿔	Hone of Panto
+지그너츠 줄기	Zignuts Stem
+나비 날개	Butterfly Wing
+피렌트 꽃	Firent Flower
+이노움의 핵	Core of Egnome
+요노움의 핵	Core Yognome
+타누 줄기	Tanu Stem
+비토우 더듬이	Beetow Feelers
+마이즈의 포자 주머니	Spore Pocket of Maize
+얼타눈 깃털	Ultanun Feather
+카르카슈 버섯	Carcashu Mushroom
+우펜트의 껍질	Skin of Upent
+멘티우드의 날개	Mentiwood
+록소돈 고기	Loxodon Meet
+던볼의 가시	Thorn of Thornball
+오페러의 껍질	Thorn of Operor
+누덕고치의 껍질	Skin of Bagworm
+트리펠리의 결정	Crystal of Truffle
+메슘의 줄기	Stem of Matsum
+메로그의 심장	Heart of Merog
+체이퍼러의 날개	Wing of Chafperor
+양초	Candle
+톤투스의 가시	Thron of Tontus
+피노 잎	Pino Leaf
+제페토의 줄기	Stem of Geppetto
+지누테의 껍질	Skin of Zinute
+사막 츄파카브라 고기	Desert Chupacabra Meat
+웬디고 이빨	Wendigo Tooth
+사우가의 핵	Core of Sauga
+라우지누테의 껍질	Skin of Lauzinute
+호그마 이빨	Hogma Tooth
+바브 더듬이	Varv Feelers
+지누테카스의 핵	Core of Zinutekas
+베스퍼의 무게추	Weitght Clapper of Vesper
+비카라스의 핵	Core of Vikaras
+쉬타임의 핵	Core of Shtayim
+휠렌의 핵	Core of Wheelen
+러스라트의 핵	Core of Rusrat
+마우로스의 핵	Core of Mauros
+밀납	Batik
+몽당 나무 잎	Short Tree Leaf
+긴팔 나무의 결정	Crystal of Long Arm Tree
+인프로버크의 껍질	Skin of Infroburk
+졸렘의 핵	Core of Zolem
+묘지 골렘의 핵	Core of Cemetery Golem
+할로우벤터의 사념체	Innocent Evil of Hallowventer
+빅 코카트리스의 심장	Heart of Big Cockatrice
+드레이크 고기	Drake Meat
+피라콘 잎	Phyracon Leaf
+주술 인형의 핵	Core of Shaman Doll
+슬라임 조각	Slime Piece
+아르마의 뿔	Thron of Arma
+초록 드레이크 이빨	Green Drake Tooth
+플라스크 조각	Flask Piece
+붉은 갈고리	Red Hook
+검은 주술인형의 핵	Core of Black Shaman Doll
+디머의 구슬	Marble of Dimmer
+검은 드레이크의 심장	Heart of Black Drake
+락터의 껍질	Skin of Rocktor
+베누켈로스의 핵	Core of Venucelos
+에하드의 핵	Core of Echad
+타마의 핵	Core of Tama
+리자드맨 이빨	Lizardman Tooth
+갈고리	Hook
+날개 개구리의 핵	Wing Flog
+코카트리스의 뼈	Bone of Cockatrice
+드레이크의 뿔	Hron of Drake
+그롤의 뿔	Horn of Groll
+푸른 프라가라스의 줄기	Stem of Blue Fragaras
+베카라베의 껍질	Vekarabe
+부우크의 핵	Core of Boowook
+부베 활대	Vubbe Cross Stick
+부베 곡괭이	Vubbe Pickax
+부베 두건	Vubbe Hood
+단델의 날개	Wind of Dandel
+판토 눈썹	Panto Eyebrow
+판토 창대	Panto Spear Shaft
+티피오의 꽃술	Stamen Tipio
+도요르 잎다발	Doyor Leaf Bunch
+호그마 궁수 허리띠	Hogma Archer Belt
+판토 창날	Panto Spear Shape
+유황	Sulfur
+신나바르	Cinnabar
+박쥐의 날개	Wing of Bat
+유리조각	Glass Slice
+떡갈나무	Oka Tree
+물푸레나무	Ash Tree
+소나무	Pine Tree
+삼나무	Cedar Tree
+떡갈나무 목재	Oka Lumber
+물푸레나무 목재	Ash Lumber
+소나무 목재	Pine Lumber
+삼나무 목재	Cedar Lumber
+콜리플라워의 줄기	Stem of Cauliflower
+사우가의 개조된 핵	Altered Core of Sauga
+단델의 결정	Crystal of Dandel
+누덕고치의 독액	Posion of Bagworm
+브로드헤드 애로우	Broadhead Arrow
+보드킨포인트 애로우	Bodkinpoint Arrow
+헤일매리 애로우	Hail Mary Arrow
+웬디고 송곳니	Wendigo Canine
+금괴	Glod Bar
+수은	Sliver
+케파의 껍질	Kepa Skin
+케파의 결정	Kepa Crystal
+잎방개의 더듬이	Feelers of Leaf Bug
+빛나는 껍질	Shiny Skin
+하나밍 아로마	Hanaming Aroma
+하나밍의 결정	Crystal of Hanaming
+치넨시 뿌리	Chinency Root
+인프로락터의 뼈	Bone of Infrorocktor
+탈트	Talt
+츄파카브라 가죽	Chupacabra Skin
+츄파카브라 눈알	Chupacabra Eyeball
+포포리온의 뼈	Bone of Popolion
+포포리온 꽃잎	Popolion Leaf
+위버의 껍질	Skin of Weaver
+위버 독액	Weaver Venom
+포쿠부 고기	Pokubu Meat
+포쿠부의 뿔	Horrn of Pokubu
+변색된 잎	Discolored Leaf
+유코푸스 밧줄	Jukopus Rope
+붉은 케파의 줄기	Red Kepa Stem
+붉은 케파의 결정	Red Kepa Crystal
+부베 창끝	Vubbe Spear Head
+부베의 피	Blood of Vubbe
+라플라워 뿌리	Raflower Root
+라플라워의 결정	Crystal of Raflower
+스톤오르카 조각	Stoneorca Piece
+박쥐 이빨	Bat Tooth
+쉬레디드의 천조각	Piece of Cloth of Shredded
+쉬레디드의 사념체	Innocent Evil of Shredded
+에큐바이트 이빨	Yekubite Tooth
+에큐바이트 수정	Yekubite Crystal
+수정거미 껍질	Skin of Crystal Spider
+수정거미 수정	Crystal of Crystal Spider
+부베 투사의 피	Blood of Vubbe Fighter
+지그너츠 열매	Zignuts Fruit
+지그너츠 씨앗	Zignuts Seed
+판토 잎 모양 장식	Panto Leaf Decoration
+허밍버드의 날개	Wing of Humming Bird
+허밍버드 더듬이	Humming Bird Feelers
+허밍버드 날개 가루	Humming Bird Wing Power
+리플라이 날개	Leafly Wing
+리플라이 더듬이	Leafly Feelers
+리플라이 알	Leafly Eggs
+씨드미아 씨앗	Seedmia Seed
+씨드미아 꽃가루	Seedmia Pollen
+피렌트 껍질	Firent Skin
+부러진 판토 소드	Broken Panto Sword
+판토 발굽	Panto Hoof
+판토 주술사 지팡이 장식	Panto Shaman Wand Decoration
+말라두의 고기	Meat of Mallardu
+말라두 깃털	Mallardu Feather
+말라두의 부리	Beak of Mallardu
+우담바라	Udumbara
+요노움의 핵	Core of Yognome
+요노움의 파편	Fragment of Yognome
+이노움의 핵	Core of Egnome
+이노움의 파편	Fragment of Egnome
+로델린의 날개	Wing of Rodelin
+로델린의 옷조각	Cloth Piece of Rodelin
+폰드의 머리카락	Hair of Halirpawnd
+폰드 활대	Pawnd Cross Stick
+폰델의 머리카락	Hair of Pawndel
+폰델 샤프트	Pawndel'S Shaft
+갈록 가죽	Galok Leather
+갈록의 클로	Clawof Galok
+글리자돈의 뼈	Bone of Glizardon
+글리자돈의 심장	Heart of Glizardon
+글리자돈의 꼬리	Tail of Glizardon
+퓨어 크리스탈	Pure Crystal
+장작	Firewood
+라파스 수지	Lapas Resin
+주다스 결정	Judas Crystal
+시드 오일	Seed Oil
+마이즈 포자 주머니	Maize Spore Pocket
+마이즈 잎	Maize Leaf
+마이즈 눈알	Maize Eyeball
+낚시대	Fishing Rod
+피셔맨의 핵	Core of Fisherman
+식칼	Kitchen Knife
+거대한 갈고리	Great Hook
+밴시의 사념체	Innocent Evil of Banshee
+플루플루 애로우	Fluflu Arrow
+쉬타임의 붉은 눈	Red Eye of Shtayim
+에하드의 푸른 눈	Blue Eye of Echad
+그루머 잎	Grummer Leaf
+끈적끈적한 액	Sticky Liquid
+라텍스	Latex
+지방	Fat
+포쿠본 고기	Pokuborn Meat
+룩소돈 고기	Loxodon Meat
+안스르	Ansr
+베오놀	Veonol
+다에르	Daer
+페놀	Penol
+아라흐	Arah
+크루마보 잎	Bushspider Leaf
+거대한 정강이뼈	Great Shinbone
+검은 데스모두스 이빨	Black Desmodus Tooth
+검은 빅 그리바 갓	Black Big Gribaru Gat
+계란	Eggs
+공기 주머니	Oxygen Pocket
+그롤 이빨	Groll Tooth
+그리바 갓	Griba Gat
+그리바루 갓	Gribaru Gat
+나무 말뚝	Tree Stake
+녹슨 고철	Rust Scrap Metal
+다크슬라임 파편	Dark Slime Fragment
+더키의 부리	Beak of Duckey
+데스모두스 이빨	Desmodus Tooth
+덴덴 꽃잎	Denden Petal
+도요르 발톱	Doyor Claw
+드레이크의 피막	Film of Drake
+드레이프 독침	Drape Posioned Needle
+라프세이브 잎	Lapasape Leaf
+라플레시아 독액	Rafflesia Posioned Liquid
+램베어 뼈	Rambear Bone
+러바인러바 산성 수액	Ravinelerva Acidic Sap
+러블렘 파편	Rubblem Fragment
+러블렘의 핵	Core of Rubblem
+레무르의 꼬리	Tail of Lemur
+레무리아의 꼬리	Tail of Lemuria
+레푸스버니 털	Repusbunny Hair
+록소돈 상아	Loxodon Ivory
+록소돈의 등뼈	Backbone of Loxodon
+루바보스 가죽	Rubabos Leather
+리자드맨 발톱	Lizardman Claw
+리자드맨 송곳니	Lizardman Canine
+리프넛의 날개	Wing of Leafnut
+망령의 두건	Hood of Specter
+메다키아 금속장식	Medakia Metal Decoration
+메다키아의 뿔	Horn of Medakia
+멘티우드의 껍질	Skin of Mentiwood
+멜리치 앞다리	Meleech Foreleg
+모글란 고기	Moglan Meat
+모야부의 뼈	Bone of Moyabu
+미니번 가죽	Minivern Skin
+바본 깃털	Bavon Feather
+바브의 껍질	Skin of Varv
+바퀴	Wheel
+밴시의 두건	Hood of Banshee
+벨리글러 깃털	Velwriggler Feather
+보라색 잎	Purple Leaf
+붉은 부베족 증표	Red Vubbe Token
+비테로스 잎	Beeteros Leaf
+빅 그리바 갓	Big Griba Gat
+빅 코카트리스의 부리	Big Cockatrice Beak
+사막 츄파카브라 가죽	Desert Chupacabra Skin
+사우가의 동력기관	Power Engine of Sauga
+사이어 잎	Cire Leaf
+사크몰리 줄기	Sakmoli Stem
+샤드스태튜 발톱	Shardstatue Claw
+송진	Resin
+쉬타임 파편	Shtayim Fragment
+스타울리트 심장	Heart of Stoulet
+시체의 손	Hand of Dead Body
+아모리 판금	Armory Plate
+암몬 등뼈	Ammon Backbone
+야광 포자	Glow Spore
+얼타눈의 뼈	Bone of Ultanun
+엘로구아 꽃잎	Ellogua Petal
+엘로마고 잎	Ellomago Leaf
+엘룸 방울	Ellom Bell
+엘룸의 결정	Crystal of Ellom
+인프로홀더의 뼈	Bone of Infroholder
+임프 지팡이 장식	Nymph Wand Decoration
+제페토 잎	Geppetto Leaf
+족쇄	Shackle
+주술인형의 솜	Cotton of Shaman Doll
+초록 엘룸 방울	Green Ellom Bell
+츄파루카 고기	Chupaluka Meat
+카라스 파편	Karas Fragment
+카로 잎사귀	Caro Leaf
+케파레이더 이빨	Kepa Raider Tooth
+코릴러스의 뿔	Horn of Corylus
+코카트리스 가죽	Cockatrice Leather
+코카트리스 깃털	Cockatrice Feather
+콜리맨 꽃	Colimen Flolwer
+콜리타일 더듬이	Colitile Feeler
+크로뉴트 가죽	Cronewt Leather
+크로마독 뼈	Chromadog Bone
+타누의 꽃	Flower of Tanu
+타마의 껍질	Skin of Tama
+톤투리아의 가시	Thron of Tontulia
+투켄의 껍질	Skin of Tucen
+티켄의 뼈	Bone of Ticen
+파이프	Pipe
+포쿠본 가죽	Pokuborn Leather
+포쿠본 등뼈	Pokuborn Backbone
+푸른 부베 투사 증표	Bleu Vubbe Fighter Token
+플리보 줄기	Filibo Stem
+피노의 줄기	Pino Stem
+하밍 잎	Haming Leaf
+하이 부베 활대	High Vubbe Cross Stick
+하이 부베족의 증표	Token of High Vubbe
+할로우벤터의 손뼈	Hand Bones of Hallowventer
+호그마 전투 대장 송곳니	Hogma Battle Boss Canine
+회색 유코푸스 잎	Gray Jukopus Leaf
+플른렘 파편	Fallenlem Fragment
+은괴	Sliver Bar
+블랙 마켓 인장	Balck Market Seal
+하얀 점액	White Mucus
+플로르	Florr
+거친 뼛가루	Rough Bone Waste
+힘줄	Sinew
+경화제	Hardener
+질긴 힘줄	Tough Sinew
+레지네이트	Lesinate
+마력 저장기	Spell Reservoir
+돌 탄환	Stone Bullet
+비싸보이는 보석	Lush Jewel
+마법 공학 엔진	Spell Engineering Engine
+고통받는 영혼	Suffer Soul
+비테레지나의 가시	Thron of Biteregina
+켈베로스 송곳니	Kerberos Canine
+채퍼리션의 사념체	Innocent Evil of Chapparition
+시엘라	Siela
+베조 부츠 가죽	Vejo Boots Leather
+베조 부츠끈	Vejo Boots String
+사피에 체인	Saphie Chain
+사피에 스톤	Saphie Stone
+브람블의 뿔	Thron of Bramble
+요나졸렘 파편	Yonazolem Fragment
+덴옵틱의 눈	Eye of Denoptic
+스콜피오 갈고리	Scorpio Hook
+젬 연마제	Gem Abrasive
+툼로드 체인	Tomblord Chain
+베아카라스 파편	Bearkaras Fragment
+렉시퍼의 사념체	Innocent Evil of Rexipher
+낡은 유품	Old Article
+숫돌	Charcoal Stone
+구리 광석	Copper Ore
+철 광석	Iron Ore
+강철 광석	Steel Ore
+티타늄 광석	Titanium Ore
+미스릴 광석	Mithril Ore
+오리할콘 광석	Orihalcon Ore
+이실딘 광석	Ithildin Ore
+주석	Annotation
+호박	Amber
+도마뱀 호박	Lizard Amber
+토파즈	Topaz
+오팔	Opal
+가넷	Garnet
+옵시디안	Obsidian
+페리도트	Peridot
+지르콘	Zircon
+파이라이트	Pyrite
+혈석	Blood Stone
+크리오라이트	Cryorite
+파이로스톤	Pyrostone
+크리오스톤	Cryostone
+파이라늄	Pyranium
+크리오늄	Cryonium
+다이아몬드	Diamond
+사파이어	Sapphire
+스트링 어뮬렛	String Amulet
+스컬 어뮬렛	Skull Amulet
+본 어뮬렛	Bone Amulet
+크레이브 어뮬렛	Crave Amulet
+실버	Silver
+골드	Gold

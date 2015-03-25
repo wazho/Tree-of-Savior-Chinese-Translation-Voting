@@ -164,6 +164,12 @@ body > .wrapper > .container {
 
 /* Conversation dialog */
 
+.detailConversation .title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis !important;
+}
+
 .detailConversation .ui.message .country.flag {
 	position: absolute;
 	top: -15px;

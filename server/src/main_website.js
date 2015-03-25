@@ -12,6 +12,7 @@ app.get('/', function (req, res) {
 		// Filtering part of conversions to layout.
 		function (user, callback) {
 			var sample = _.sample(_.keys(BASE_DATA), DEFAULT_CONVERSATIONS_PER_PAGE);
+			// var sample = _.sortBy(_.keys(BASE_DATA)).slice(1011, 1019);
 			// var sample = ['QUEST_LV_0100_20150312_001086', 'ETC_20150312_001769', 'QUEST_LV_0100_20150312_001494']; // This line is assigned to test.
 			var filters = {};
 			_.map(sample, function (code) {
@@ -54,8 +55,9 @@ app.get('/', function (req, res) {
 		}
 	], function (err, user, filters) {
 		res.render('index', {
-			user     : user,
-			baseData : filters
+			user      : user || {},
+			baseData  : filters || {},
+			documents : TSV_FILES
 		});	
 	});
 });
@@ -184,13 +186,8 @@ app.post('/conversation/:code/translation', function (req, res) {
 					assentients  : [],
 					submit_time  : moment().format('YYYY-MM-DD HH:mm:ss')
 				};
-				// Create the folder.
-				var crowdsourcingPath = __dirname + '/crowdsourcing/';
-				fs.exists(crowdsourcingPath, function (exists) {
-					if (! exists) fs.mkdirSync(crowdsourcingPath);
-				});
 				// Write the JSON file.
-				var crowdsourcingDestination = crowdsourcingPath + code + '.json';
+				var crowdsourcingDestination = __dirname + '/crowdsourcing/' + code + '.json';
 				fs.writeFile(crowdsourcingDestination, JSON.stringify(translations), 'utf8', function (err) {
 					if (! err) {
 						callback(null, code);

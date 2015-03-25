@@ -2,19 +2,25 @@
                 Global variables
    ============================================= */
 
-// Parsing the original datasets.
+// Parsing the original datasets auto.
+// Be careful this variable. Official will put down the completed translation file.
 var AUTO_REFRESH_ORIGINAL_TSV = false;
 var BASE_DATA = {};
 var TSV_SOURCE = 'https://raw.githubusercontent.com/Treeofsavior/EnglishTranslation/master/';
-var TSV_FILES  = { /* TSV_FILES cannot have any '.' (dot) in the part of key, please careful */
+var TSV_FILES  = {
+	// TSV_FILES cannot have any '.' (dot) in the part of key, please careful.
 	'ETC' : {
-		'KR' : 'ETC.tsv',
-		'EN' : 'ETC_en.tsv',
+		'KR' : 'ETC.tsv',						// Last update. 2015/03/20 22:56
+		'EN' : 'ETC_en.tsv',					// Last update. 2015/03/20 22:55
 	},
 	'QUEST_LV_0100' : {
-		'KR' : 'QUEST_LV_0100.tsv',
-		'EN' : 'QUEST_LV_0100_en.tsv',
+		'KR' : 'QUEST_LV_0100.tsv',				// Last update. 2015/03/20 22:47
+		'EN' : 'QUEST_LV_0100_en.tsv',			// Last update. 2015/03/20 22:46
 	},
+	// Terms : These are a special part that allow the official's request.
+	// 'TERMS_CLASS' : {
+	// 	'' : 'wd'
+	// }
 };
 
 // Domain name and listening port.

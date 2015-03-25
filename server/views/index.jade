@@ -63,7 +63,7 @@ html
 								label 進階功能
 					div.advanceContainer
 						div.ui.divider
-						div.ui.four.column.stackable.centered.grid
+						div.ui.five.column.stackable.centered.grid
 							div.center.aligned.column
 								select.ui.fluid.dropdown(name='sample')
 									option(value='SAMPLE_RANDOM') 系統隨機
@@ -73,6 +73,11 @@ html
 									option(value='FILTER_ALL') 不限制過濾
 									option(value='FILTER_UNTRANSLATED') 尚未翻譯
 									option(value='FILTER_TRANSLATED') 已被翻譯
+							div.center.aligned.column
+								select.ui.fluid.dropdown(name='document')
+									option(value='DOCUMENT_ALL') 不指定文件
+									each content, document in documents
+										option(value='FILTER_' + document.toUpperCase()) #{document}
 					div.ui.horizontal.divider
 						i.setting.icon
 					button.ui.fluid.massive.green.button(onclick="$('.tableContainer').addClass('loading'); location.reload();") 換新一組翻譯

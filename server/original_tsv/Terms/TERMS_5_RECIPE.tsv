@@ -1,0 +1,368 @@
+제작서-파이로스톤	Recipe-Pyrostone
+제작서-크리오스톤	Recipe-Cryostone
+제작서-글라디우스	Recipe-Gladius
+제작서-카스카라	Recipe-Kaskara
+제작서-친퀘데아	Recipe-Cinquedea
+제작서-사브르	Recipe-Sabre
+제작서-샴시르	Recipe-Shamshir
+제작서-시미터	Recipe-Scimitar
+제작서-크리스	Recipe-Kris
+제작서-스니커스니	Recipe-Snickersnee
+제작서-모플라	Recipe-Moplah
+제작서-스파타	Recipe-Spatha
+제작서-판토 소드	Recipe-Panto Sword
+제작서-스틸 폴쳔	Recipe-Steel Polcheon
+제작서-실버 폴쳔	Recipe-Silver Polcheon
+제작서-골든 폴쳔	Recipe-Golden Polcheon
+제작서-만드라픽	Recipe-Mandrapick
+제작서-플로나스 사브르	Recipe-Flonas Sabre
+제작서-위저드 블레이드	Recipe-Wizard Blade
+제작서-미스카스 사브르	Recipe-Miskas Sabre
+제작서-트리니티 소드	Recipe-Trinity Sword
+제작서-벨니웁	Recipe-Velniup
+제작서-포르티스	Recipe-Fortees
+제작서-벤드라스 소드	Recipe-Bendras Sword
+제작서-일리지아	Recipe-Illizia
+제작서-하이 폴쳔	Recipe-High Polcheon
+제작서-스미스 소드	Recipe-Smith Wword
+제작서-클라비스 소드	Recipe-Klavis Sword
+제작서-로우 바스타드 소드	Recipe-low Bastard Sword
+제작서-플랑베르쥬	Recipe-Flamberge
+제작서-노다치	Recipe-Nodachi
+제작서-클레이모어	Recipe-Claymore
+제작서-콜로서스	Recipe-Colossus
+제작서-칼리번	Recipe-Caliburn
+제작서-콰다라	Recipe-Quaddara
+제작서-일룬	Recipe-Ilwoon
+제작서-템서스 플랑베르쥬	Recipe-Temsus Flamberge
+제작서-포텐티아	Recipe-Potentia
+제작서-디델 콜로서스	Recipe-Didel Colossus
+제작서-호그마 그레이트 소드	Recipe-Hogma Great Sword
+제작서-프리마루체	Recipe-Primaluce
+제작서-프리에블란다	Recipe-Prieblanda
+제작서-라피스 카츠발게르	Recipe-Lapis Katzbalger
+제작서-플라미니	Recipe-Flamini
+제작서-위저드 슬레이어	Recipe-Wizard Slayer
+제작서-루시두스	Recipe-Lucidus
+제작서-헬 엔드 헤븐	Recipe-Hell and Heaven
+제작서-눌리스	Recipe-Nullis
+제작서-스미스 투 핸드 소드	Recipe-Smith Two Hand Sword
+제작서-클라비스 투 핸드 소드	Recipe-Klavis Two Hand Sword
+제작서-케인 로버	Recipe-low Cane Lowver
+제작서-케인	Recipe-Cane
+제작서-크룩	Recipe-Crook
+제작서-퓨터 로드	Recipe-Puter Rod
+제작서-아울 로드	Recipe-Owl Rod
+제작서-룬 로드	Recipe-Rune Rod
+제작서-크리스탈 로드	Recipe-Crystal Rod
+제작서-배틀 로드	Recipe-Battle Rod
+제작서-아이스 로드	Recipe-Ice Rod
+제작서-파이어 로드	Recipe-Fire Rod
+제작서-바시아 로드	Recipe-Basia Rod
+제작서-매직 로드	Recipe-Magic Rod
+제작서-아크 로드	Recipe-Arch Rod
+제작서-이그니션	Recipe-Ignition
+제작서-세크레툼	Recipe-Secretum
+제작서-자이마	Recipe-Zaima
+제작서-하이 롱 로드	Recipe-High Long Rod
+제작서-스미스 로드	Recipe-Smith Rod
+제작서-클라비스 로드	Recipe-Klavis Rod
+제작서-오크 스태프	Recipe-Oak Staff
+제작서-스태프	Recipe-Staff
+제작서-쥬 스태프	Recipe-Ju Staff
+제작서-우보코 스태프	Recipe-Uboko Staff
+제작서-스태그 스태프	Recipe-Stag Staff
+제작서-지오매트리 스태프	Recipe-Geometry Staff
+제작서-데몬 스태프	Recipe-Demon Staff
+제작서-스톰 스태프	Recipe-Storm Staff
+제작서-매직 우든 스태프	Recipe-Magic Wooden Staff
+제작서-멜리나스 스태프	Recipe-Melinas Staff
+제작서-마기 스태프	Recipe-Magi Staff
+제작서-루다스 스태프	Recipe-Rudas Staff
+제작서-살타스 스태프	Recipe-Saltas Staff
+제작서-카르스토 스태프	Recipe-Karsto Staff
+제작서-엑스펙타 스태프	Recipe-Expecta Staff
+제작서-웰시 스태프	Recipe-Wealthy Staff
+제작서-캔들 스태프	Recipe-Candle Staff
+제작서-아우드라	Recipe-Audra
+제작서-선플라워	Recipe-Sunflower
+제작서-말레둠	Recipe-Maledoom
+제작서-아르카 스태프	Recipe-Arka Staff
+제작서-라가노스 혼	Recipe-Raganos Staff
+제작서-스미스 스태프	Recipe-Smith Rod
+제작서-클라비스 스태프	Recipe-Klavis Rod
+제작서-롱 보우	Recipe-Long Bow
+제작서-컴포지트 보우	Recipe-Composite Bow
+제작서-셀프 보우	Recipe-Self Bow
+제작서-로카스 보우	Recipe-Rokas Bow
+제작서-고리토스	Recipe-Goritos
+제작서-굴라일	Recipe-Gulyle
+제작서-카만	Recipe-Karman
+제작서-겐다와	Recipe-Gendawa
+제작서-스트롱 보우	Recipe-Strong Bow
+제작서-아이언 보우	Recipe-Iron Bow
+제작서-호크 보우	Recipe-Hawk Bow
+제작서-헌팅 보우	Recipe-Hunting Bow
+제작서-새비지 보우	Recipe-Savage Bow
+제작서-스네이크 보우	Recipe-Snake Bow
+제작서-레테나 보우	Recipe-Retena Bow
+제작서-와이들링 베인	Recipe-Widling Bane
+제작서-이퀄라이저	Recipe-Equalizer
+제작서-하트 시커	Recipe-Heart Seeker
+제작서-바이퍼	Recipe-Viper
+제작서-블러드 게인	Recipe-Blood Gand
+제작서-템페스트 슈터	Recipe-Tempest Shooter
+제작서-하이 숏 보우	Recipe-High Short Bow
+제작서-퓰리 보우	Recipe-Pully Bow
+제작서-스미스 보우	Recipe-Smith Bow
+제작서-클라비스 보우	Recipe-Klavis Bow
+제작서-크로스보우	Recipe-Crossbow
+제작서-도큐	Recipe-Dokyu
+제작서-쿼렐보우	Recipe-Quarrel Bow
+제작서-오크 크로스보우	Recipe-Oak Crossbow
+제작서-씰 크로스보우	Recipe-Seal Crossbow
+제작서-캐타펄트	Recipe-Catapult
+제작서-크래인퀸	Recipe-Cranequine
+제작서-스나이퍼 크로스보우	Recipe-Sniper Crossbow
+제작서-헤비 크로스보우	Recipe-Heavy Crossbow
+제작서-와이드 크로스보우	Recipe-Wide Crossbow
+제작서-그랜드 크로스	Recipe-Grand Crossbow
+제작서-메디나 크로스보우	Recipe-Medina Crossbow
+제작서-그레이브 크로스보우	Recipe-Grave Crossbow
+제작서-슈팅스타	Recipe-Shooting Star
+제작서-카틴 블라스터	Recipe-Katyne Blaster
+제작서-그라주스	Recipe-Grajus
+제작서-이스발리티	Recipe-Isbality
+제작서-모르토	Recipe-Morto
+제작서-스미스 크로스보우	Recipe-Smith Crossbow
+제작서-클라비스 크로스보우	Recipe-Klavis Crossbow
+제작서-메이스	Recipe-Mace
+제작서-모닝스타	Recipe-Morningstar
+제작서-버지건	Recipe-Buzdygan
+제작서-고덴닥	Recipe-Godendag
+제작서-워픽	Recipe-Warpick
+제작서-고르즈	Recipe-Gurz
+제작서-부라와	Recipe-Bulawa
+제작서-마울	Recipe-Maul
+제작서-마이너 해머	Recipe-Miner Hammer
+제작서-파이브 해머	Recipe-Fifth Hammer
+제작서-스파이크 메이스	Recipe-Spiked Mace
+제작서-실드 브레이커	Recipe-Shield Breaker
+제작서-스컬 크래셔	Recipe-Skull Crasher
+제작서-발타스 모닝스타	Recipe-Baltas Morningstar
+제작서-선쿠스 마울	Recipe-Sunkus Maul
+제작서-홀리 스매셔	Recipe-Holy Smasher
+제작서-칼루 해머	Recipe-Kaloo Hammer
+제작서-드레이크 테일	Recipe-Drake Tail
+제작서-로얄 메이스	Recipe-Royal Mace
+제작서-스터너	Recipe-Stunner
+제작서-발리아	Recipe-Valia
+제작서-하이 아이언 클럽	Recipe-High Iron Club
+제작서-스미스 메이스	Recipe-Smith Mace
+제작서-클라비스 메이스	Recipe-Klavis Mace
+제작서-숏 스피어	Recipe-Short Spear
+제작서-에스폰툰	Recipe-Espontoon
+제작서-윙드 에스폰툰	Recipe-Winged Espontoon
+제작서-스폰툰	Recipe-Spontoon
+제작서-아스타	Recipe-Hasta
+제작서-롱 아스타	Recipe-Long Hasta
+제작서-사우로터	Recipe-Sauroter
+제작서-도리	Recipe-Dori
+제작서-그랑 스폰툰	Recipe-Grand Spontoon
+제작서-제가 스피어	Recipe-Zega Spear
+제작서-할 스피어	Recipe-Harl Spear
+제작서-페디미안 스피어	Recipe-Fedimian Spear
+제작서-실버 스피어	Recipe-Silver Spear
+제작서-게라스 스피어	Recipe-Geras Spear
+제작서-둠 스피어	Recipe-Doom Spear
+제작서-피르나스	Recipe-Firnas
+제작서-아다타그	Recipe-Adatag
+제작서-브란디시	Recipe-Brandish
+제작서-파이크	Recipe-Pike
+제작서-파르티잔	Recipe-Partisan
+제작서-트라이던트	Recipe-Trident
+제작서-로얄 파르티잔	Recipe-Royal Partisan
+제작서-콘 파이크	Recipe-Cone Pike
+제작서-페디미안 파이크	Recipe-Fedimian Pike
+제작서-메디나 파이크	Recipe-Medina Pike
+제작서-프리 파르티잔	Recipe-Free Partisan
+제작서-앤트라 파르티잔	Recipe-Entra Partisan
+제작서-갈린 트라이던트	Recipe-Galin Trident
+제작서-파인 콘 파이크	Recipe-Fine Cone Pike
+제작서-트렉시아	Recipe-Tracksia
+제작서-라이데카	Recipe-Laideka
+제작서-플레임 파이크	Recipe-Flame Pike
+제작서-하드 레더 글로브	Recipe-Hard Leather Gloves
+제작서-하드 레더 부츠	Recipe-Hard Leather Boots
+제작서-하드 레더 팬츠	Recipe-Hard Leather Pants
+제작서-하드 레더 아머	Recipe-Hard Leather Armor
+제작서-체인 글로브	Recipe-Chain Gloves
+제작서-체인 부츠	Recipe-Chain Boots
+제작서-체인 팬츠	Recipe-Chain Pants
+제작서-체인 메일	Recipe-Chain Mail
+제작서-스틸 체인 글로브	Recipe-Steel Chain Gloves
+제작서-스틸 체인 부츠	Recipe-Steel Chain Boots
+제작서-스틸 체인 팬츠	Recipe-Steel Chain Pants
+제작서-스틸 체인 메일	Recipe-Steel Chain Mail
+제작서-포레스트 팬츠	Recipe-Forest Pants
+제작서-포레스트 로브	Recipe-Forest Robe
+제작서-포레스트 레더 글로브	Recipe-Forest Leather Gloves
+제작서-포레스트 레더 부츠	Recipe-Forest Leather Boots
+제작서-포레스트 레더 팬츠	Recipe-Forest Leather Pants
+제작서-포레스트 레더 아머	Recipe-Forest Leather Armor
+제작서-클라이다 건틀릿	Recipe-Klaida Gauntlets
+제작서-클라이다 그리브	Recipe-Klaida Greaves
+제작서-클라이다 스커트	Recipe-Klaida Skirt
+제작서-클라이다 메일	Recipe-Klaida Mail
+제작서-그리마 팬츠	Recipe-Grima Pants
+제작서-그리마 로브	Recipe-Grima Robe
+제작서-베리스 글로브	Recipe-Veris Gloves
+제작서-베리스 부츠	Recipe-Veris Boots
+제작서-베리스 팬츠	Recipe-Veris Pants
+제작서-베리스 튜닉	Recipe-Veris Tunic
+제작서-스케일 글로브	Recipe-Scale Gloves
+제작서-스케일 부츠	Recipe-Scale Boots
+제작서-스케일 레깅스	Recipe-Scale Leggings
+제작서-스케일 메일	Recipe-Scale Mail
+제작서-하드 베리스 글로브	Recipe-Hard Veris Gloves
+제작서-하드 베리스 부츠	Recipe-Hard Veris Boots
+제작서-하드 베리스 팬츠	Recipe-Hard Veris Pants
+제작서-하드 베리스 튜닉	Recipe-Hard Veris Tunic
+제작서-헤비 스케일 글로브	Recipe-Heavy Scale Gloves
+제작서-헤비 스케일 부츠	Recipe-Heavy Scale Boots
+제작서-헤비 스케일 레깅스	Recipe-Heavy Scale Leggings
+제작서-헤비 스케일 메일	Recipe-Heavy Scale Mail
+제작서-리갈 팬츠	Recipe-Rigal Pants
+제작서-리갈 로브	Recipe-Rigal Robe
+제작서-브리간딘 글로브	Recipe-Brigandine Gloves
+제작서-브리간딘 부츠	Recipe-Brigandine Boots
+제작서-브리간딘 팬츠	Recipe-Brigandine Pants
+제작서-브리간딘 아머	Recipe-Brigandine Armor
+제작서-플레이트 건틀릿	Recipe-Plate Gauntlets
+제작서-플레이트 그리브	Recipe-Plate Greaves
+제작서-플레이트 레깅스	Recipe-Plate Leggings
+제작서-플레이트 아머	Recipe-Plate Armor
+제작서-포쿠부 아머	Recipe-Pokubu Armor
+제작서-카브라 부츠	Recipe-Kabra Boots
+제작서-크림슨 레더 아머	Recipe-Crimson Leather Armor
+제작서-카펜터 글로브	Recipe-Carpenter Gloves
+제작서-테넷 체인 팬츠	Recipe-Tenet Chain Pants
+제작서-테넷 체인 메일	Recipe-Tenet Chain Mail
+제작서-잘리아 레더 글로브	Recipe-Zalia Leather Gloves
+제작서-잘리아 레더 부츠	Recipe-Zalia Leather Boots
+제작서-잘리아 레더 팬츠	Recipe-Zalia Leather Pants
+제작서-잘리아 레더 아머	Recipe-Zalia Leather Armor
+제작서-프로바 글로브	Recipe-Proba Gloves
+제작서-프로바 로브	Recipe-Proba Robe
+제작서-스터디드 글로브	Recipe-Studded Gloves
+제작서-스터디드 부츠	Recipe-Studded Boots
+제작서-스터디드 팬츠	Recipe-Studded pants
+제작서-스터디드 아머	Recipe-Studded Armor
+제작서-인섹트 건틀릿	Recipe-Insect Gauntlets
+제작서-인섹트 그리브	Recipe-Insect Greaves
+제작서-인섹트 스커트	Recipe-Insect Skirt
+제작서-인섹트 메일	Recipe-Insect Mail
+제작서-프로타스 부츠	Recipe-Protas Boots
+제작서-프로타스 트라우저	Recipe-Protas Trousers
+제작서-레드 베리스 글로브	Recipe-Red Veris Gloves
+제작서-레드 베리스 튜닉	Recipe-Red Veris Tunic
+제작서-라이트 플레이트 레깅스	Recipe-Light Plate Leggings
+제작서-라이트 플레이트 아머	Recipe-Light Plate Armor
+제작서-헤비 그리마 글로브	Recipe-Heavy Grima Gloves
+제작서-헤비 그리마 부츠	Recipe-Heavy Grima Boots
+제작서-헤비 그리마 로브	Recipe-Heavy Grima Robe
+제작서-포쿠본 레더 팬츠	Recipe-Pokubu Leather Pants
+제작서-포쿠본 레더 아머	Recipe-Pokubu Leather Armor
+제작서-드레이크 레더 글로브	Recipe-Drake Leather Gloves
+제작서-드레이크 레더 부츠	Recipe-Drake Leather Boots
+제작서-드레이크 레더 레깅스	Recipe-Drake Leather Leggings
+제작서-드레이크 레더 튜닉	Recipe-Drake Leather Tunic
+제작서-실버 플레이트 건틀릿	Recipe-Silver Plate Gauntlets
+제작서-실버 플레이트 그리브	Recipe-Silver Plate Greaves
+제작서-실버 플레이트 레깅스	Recipe-Silver Plate Leggings
+제작서-실버 플레이트 아머	Recipe-Silver Plate Armor
+제작서-부베 투사 건틀릿	Recipe- Vubbe Warrior Gauntlets
+제작서-실드 크래셔	Recipe-Shield Crasher
+제작서-바인 글로브	Recipe-Vine Gloves
+제작서-바인 부츠	Recipe-Vine Boots
+제작서-바인 팬츠	Recipe-Vine Pants
+제작서-바인 로브	Recipe-Vine Robe
+제작서-세인트 로브	Recipe-Saint Robe
+제작서-소울 체이서 글로브	Recipe-soul Chaser Gloves
+제작서-소울 체이서 부츠	Recipe-soul Chaser Boots
+제작서-소울 체이서 팬츠	Recipe-soul Chaser Pants
+제작서-소울 체이서 아머	Recipe-soul chaser Armor
+제작서-본 건틀릿	Recipe-Bone Gauntlets
+제작서-본 그리브	Recipe-Bone Greaves
+제작서-본 스커트	Recipe-Bone Skirt
+제작서-본 아머	Recipe-Bone Armor
+제작서-쉐이드 핸즈	Recipe-Shade Hands
+제작서-쉐이드 러너	Recipe-Shade Runner
+제작서-쉐이드 스커트	Recipe-Shade Skirt
+제작서-쉐이드 댄서	Recipe-Shade Dancer
+제작서-윈드 러너	Recipe-wind Runner
+제작서-밴시 베일	Recipe-Banshee Veil
+제작서-와일드 레더 글로브	Recipe-Wild Leather Gloves
+제작서-추종자의 레더 아머	Recipe-Follower's Leather Armor
+제작서-베조 부츠	Recipe-Vejo Boots
+제작서-로카스 레더 아머	Recipe-Rokas Leather Armor
+제작서-로카스 메일	Recipe-Rokas Mail
+제작서-로카스 로브	Recipe-Rokas Robe
+제작서-네펜더스 글로브	Recipe-Nepenthers Gloves
+제작서-우든 버클러	Recipe-Wooden Buckler
+제작서-우든 카이트 실드	Recipe-Wooden Kite Shield
+제작서-카이트 실드	Recipe-Kite Shield
+제작서-라운드 실드	Recipe-Round Shield
+제작서-스틸 카이트 실드	Recipe-Steel Kite Shield
+제작서-스틸 버클러	Recipe-Steel Buckler
+제작서-머시너리 실드	Recipe-Mercenary Shield
+제작서-블랙 우든 실드	Recipe-Black Wooden Shield
+제작서-오크 실드	Recipe-Oak Shield
+제작서-새비지 실드	Recipe-Savage Shield
+제작서-잘리아 카이트 실드	Recipe-Zalia Kite Shield
+제작서-헤비 카이트 실드	Recipe-Heavy Kite Shield
+제작서-비드 실드	Recipe-Bead Shield
+제작서-서클 가드	Recipe-Circle Guard
+제작서-루다스 실드	Recipe-Rudas Shield
+제작서-월 가드	Recipe-Wall Guard
+제작서-포트리스	Recipe-Fortrees
+제작서-비틀백	Recipe-Beetleback
+제작서-세이지 월	Recipe-Sage Wall
+제작서-아이아스	Recipe-Aias
+제작서-나이프	Recipe-Knife
+제작서-더크대거	Recipe-Dirk Dagger
+제작서-망고슈	Recipe-Maingauche
+제작서-츄파카브라 네클리스	Recipe-Chupacabra Necklace
+제작서-스트링 네클리스	Recipe-String Necklace
+제작서-판토 탈리스만	Recipe-Panto Talisman
+제작서-파이라이트 팬던트	Recipe-Pyrite Pendant
+제작서-크리오라이트 팬던트	Recipe-Cryorite Pendant
+제작서-매직 탈리스만	Recipe-Magic Talisman
+제작서-스트랭스 팬던트	Recipe-Strength Pendant
+제작서-헬스 스톤	Recipe-Health Stone
+제작서-워리어 팬던트	Recipe-Warrior Pendant
+제작서-퀀커러	Recipe-Conqueror
+제작서-페타미온	Recipe-Petamion
+제작서-일렉투스	Recipe-Illektus
+제작서-애니무스	Recipe-Animus
+제작서-사피에 네클리스	Recipe-Saphie Necklace
+제작서-분노의 목걸이	Recipe-Necklace of Anger
+제작서-레더 뱅글	Recipe-Leather Bangle
+제작서-아이언 뱅글	Recipe-Iron Bangle
+제작서-크리스탈 뱅글	Recipe-Crystal Bangle
+제작서-샤인 브레이슬릿	Recipe-Shine Bracelet
+제작서-배틀 브레이슬릿	Recipe-Battle Bracelet
+제작서-포이즌 뱅글	Recipe-Poison Bangle
+제작서-플랜츠 브레이슬릿	Recipe-Plants Bracelet
+제작서-컨트롤 뱅글	Recipe-Conrol Bangle
+제작서-헌터 뱅글	Recipe-Hunter Bangle
+제작서-브레이서 오브 아처	Recipe-Bracer of Archer
+제작서-위저드 브레이슬릿	Recipe-Wizard Bracelet
+제작서-래피드 뱅글	Recipe-Rapid Bangle
+제작서-글래스 브레이슬릿	Recipe-Glass Bracelet
+제작서-글래디에이터 밴드	Recipe-Gladiator Band
+제작서-브레이슬릿 오브 린네	Recipe-Bracelet of Linne
+제작서-포라	Recipe-Pora
+제작서-포레	Recipe-Pore
+제작서-시셀 브레이슬릿	Recipe-Cicel Bracelet
+제작서-자카리엘 뱅글	Recipe-Zachariel Bangle

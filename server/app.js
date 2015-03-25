@@ -22,11 +22,11 @@
 // Below is native libraries.
 var readline = require('readline'),
 	path     = require('path'),
-	url      = require('url'),
-	fs       = require('fs');
+	url      = require('url');
 // Below is 3rd-party libraries.
 var async            = require('async'),
 	_                = require('underscore'),
+	fs               = require('graceful-fs'),
 	request          = require('request'),
 	express          = require('express'),
 	session          = require('express-session'),

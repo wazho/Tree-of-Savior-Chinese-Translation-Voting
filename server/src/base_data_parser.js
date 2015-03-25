@@ -3,36 +3,57 @@
    ============================================= */
 
 var generateTranslateBaseData = function () {
+	// Create the folder.
+	var originalTsvPath    = __dirname + '/original_tsv/',
+		crowdsourcingPath  = __dirname + '/crowdsourcing/',
+		generationJsonPath = __dirname + '/generation_json/';
+	fs.exists(originalTsvPath, function (exists) {
+		if (! exists) fs.mkdir(originalTsvPath);
+	});
+	fs.exists(crowdsourcingPath, function (exists) {
+		if (! exists) fs.mkdir(crowdsourcingPath);
+	});
+	fs.exists(generationJsonPath, function (exists) {
+		if (! exists) fs.mkdir(generationJsonPath);
+	});
+	// Async.
 	async.map(_.keys(TSV_FILES), function (series, callback) {
 		async.map(_.keys(TSV_FILES[series]), function (language, callback) {
 			async.waterfall([
 				// Parsing the HTML.
 				function (callback) {
-					var url = TSV_SOURCE + TSV_FILES[series][language];
-					request(url, function (err, res, body) {
-						if (! err && res.statusCode === 200) {
-							// console.log("[Success] Parsing the HTML (" + url + ").");
-							callback(null, body);
-						} else {
-							callback(err);
-						}
-					});
+					if (AUTO_REFRESH_ORIGINAL_TSV) {
+						var url = TSV_SOURCE + TSV_FILES[series][language];
+						request(url, function (err, res, body) {
+							if (! err) {
+								callback(null, body);
+							} else {
+								callback(err);
+							}
+						});
+					} else {
+						callback(null, []);
+					}
 				},
 				// Writing the .TSV file.
 				function (body, callback) {
-					var dest = __dirname + '/original_tsv/' + TSV_FILES[series][language];
-					fs.writeFile(dest, body, 'utf8', function (err) {
-						if (! err) {
-							// console.log("[Success] Writing " + TSV_FILES[series][language] + " file.");
-							callback(null);
-						} else {
-							callback(err);
-						}
-					});
+					if (AUTO_REFRESH_ORIGINAL_TSV) {
+						var dest = originalTsvPath + TSV_FILES[series][language];
+						fs.writeFile(dest, body, 'utf8', function (err) {
+							if (! err) {
+								console.log("[Success] Writing " + TSV_FILES[series][language] + " file.");
+								callback(null);
+							} else {
+								callback(err);
+							}
+						});
+					} else {
+						callback(null);
+					}
 				},
 				// Split the string in '\n', then split each row in '\r'.
 				function (callback) {
-					var dest = __dirname + '/original_tsv/' + TSV_FILES[series][language];
+					var dest = originalTsvPath + TSV_FILES[series][language];
 					fs.readFile(dest, 'utf8', function (err, data) {
 						var conversations = {};
 						if (! err) {
@@ -49,39 +70,29 @@ var generateTranslateBaseData = function () {
 					});
 				}
 			], function (err, language, conversations) {
-				if (! err) {
-					var tsv = {
-						language      : language,
-						conversations : conversations
-					}
-					callback(null, tsv);
-				} else {
-					callback(err);
-				}
+				(err) ? callback(err) : callback(null, { language : language, conversations : conversations });
 			});
 		}, function (err, tsvs) {
-			var baseData = {};
-			tsvs.map(function (tsv) {
+			var baseDatum = {};
+			_.map(tsvs, function (tsv) {
 				_.mapObject(tsv.conversations, function (conversation, code) {
-					baseData[code] = baseData[code] || {};
-					baseData[code][tsv.language] = conversation;
+					baseDatum[code] = baseDatum[code] || {};
+					baseDatum[code][tsv.language] = conversation;
 				});
 			});
-			callback(err, baseData);
-		});
-	}, function (err, baseDatum) {
-		baseDatum.map(function (baseData) {
-			_.mapObject(baseData, function (language, code) {
-				var destA = __dirname + '/generation_json/' + code + '.json';
-				fs.writeFile(destA, JSON.stringify(language), 'utf8', function (err) {});
-				var destB = __dirname + '/crowdsourcing/' + code + '.json';
-				fs.exists(destB, function (exists) {
-					if (! exists) {
-						fs.writeFile(destB, JSON.stringify({}), 'utf8', function (err) {});
-					}
+			_.map(baseDatum, function (language, code) {
+				var fileDestinationA = generationJsonPath + code + '.json';
+				fs.writeFile(fileDestinationA, JSON.stringify(language), 'utf8', function (err) {});
+				var fileDestinationB = crowdsourcingPath + code + '.json';
+				fs.exists(fileDestinationB, function (exists) {
+					if (! exists) fs.writeFile(fileDestinationB, JSON.stringify({}), 'utf8', function (err) {});
 				});
 			});
+			callback(err);
 		});
+	}, function (err) {
+		console.log("[Success] Refresh the files of generation JSON.");
+		setTimeout(readTranslateBaseData, 2000);
 	});
 }
 
@@ -92,7 +103,6 @@ var generateTranslateBaseData = function () {
 var readTranslateBaseData = function () {
 	// Get the files in article directory.
 	fs.readdir(__dirname + '/generation_json/', function (err, files) {
-		var jsonCache = new Array();
 		async.map(files, function (file, callback) {
 			// Check the Ext.name.
 			if (path.extname(file) === '.json') {
@@ -106,7 +116,7 @@ var readTranslateBaseData = function () {
 				callback(null);
 			}
 		}, function (err) {
-			console.log("The generated files has loaded completely.");
+			console.log("[Success] Load the files of generation JSON completely.");
 		});
 	});
 }
@@ -115,9 +125,4 @@ var readTranslateBaseData = function () {
               Initial for Base Data
    ============================================= */
 
-if (AUTO_REFRESH_ORIGINAL_TSV) {
-	generateTranslateBaseData();
-	readTranslateBaseData();
-} else {
-	readTranslateBaseData();
-}
+generateTranslateBaseData();
