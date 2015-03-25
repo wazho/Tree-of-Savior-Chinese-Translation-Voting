@@ -8,27 +8,78 @@ app.get('/', function (req, res) {
 		function (callback) {
 			var user = (req.user) ? req.user : 'GUEST';
 			callback(null, user);
+		}
+	], function (err, user, filters) {
+		res.render('index', {
+			user     : user || {},
+			baseData : filters || {},
+			files    : TSV_FILES
+		});	
+	});
+});
+
+// Login via Facebook.
+app.get('/login', function (req, res) { res.redirect('/auth/facebook'); });
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+
+// 
+app.get('/sample/:sample/filter/:filter/file/:file', function (req, res) {
+	async.waterfall([
+		// Get the paramaters.
+		function (callback) {
+			var params = req.params;
+			if (params.sample === undefined || ! params.sample.match(/^SAMPLE_.+$/)) {
+				callback('ERR_PARAMS_SAMPLE');
+			} else if (params.filter === undefined || ! params.filter.match(/^FILTER_.+$/)) {
+				callback('ERR_PARAMS_FILTER');
+			} else if (params.file === undefined || ! params.file.match(/^FILE_.+$/)) {
+				callback('ERR_PARAMS_FILE');
+			} else {
+				callback(null, params);
+			}
 		},
 		// Filtering part of conversions to layout.
-		function (user, callback) {
-			var sample = _.sample(_.keys(BASE_DATA), DEFAULT_CONVERSATIONS_PER_PAGE);
-			// var sample = _.sortBy(_.keys(BASE_DATA)).slice(1011, 1019);
-			// var sample = ['QUEST_LV_0100_20150312_001086', 'ETC_20150312_001769', 'QUEST_LV_0100_20150312_001494']; // This line is assigned to test.
-			var filters = {};
+		function (params, callback) {
+			var sample;
+			console.log(BASE_DATA);
+			// File.
+			if (params.file === 'FILE_ALL') {
+				sample = _.keys(BASE_DATA);
+			} else {
+				;
+			}
+			// Filter.
+			if (params.filter === 'FILTER_ALL') {
+				sample = sample;
+			} else {
+				;
+			}
+			// Sample.
+			if (params.sample === 'SAMPLE_RANDOM') {
+				sample = _.sample(sample, DEFAULT_CONVERSATIONS_PER_PAGE);
+			} else {
+				;
+			}
+			// var sample = _.sample(_.keys(BASE_DATA), DEFAULT_CONVERSATIONS_PER_PAGE);
+			// // var sample = _.sortBy(_.keys(BASE_DATA)).slice(1011, 1019);
+			// // var sample = ['QUEST_LV_0100_20150312_001086', 'ETC_20150312_001769', 'QUEST_LV_0100_20150312_001494']; // This line is assigned to test.
+			var conversations = {};
 			_.map(sample, function (code) {
-				filters[code] = {};
-				filters[code].originals = BASE_DATA[code];
+				conversations[code] = { originals : BASE_DATA[code] };
 			});
-			callback(null, user, filters);
+			callback(null, conversations);
 		},
-		// Each conversation of filters need get own top 3 translations.
-		function (user, filters, callback) {
-			async.map(_.pairs(filters), function (filter, callback) {
-				var code         = filter[0],
-					conversation = filter[1];
+		// Each conversation of conversations need get own top 3 translations.
+		function (conversations, callback) {
+			async.map(_.pairs(conversations), function (conversationPair, callback) {
+				var code         = conversationPair[0],
+					conversation = conversationPair[1];
 				var fileSrc = path.normalize(__dirname + '/crowdsourcing/' + code + '.json');
 				fs.readFile(fileSrc, 'utf-8', function (err, data) {
-					if (! err) {
+					if (err) {
+						callback('ERR_CODE_FILE_NOT_EXIST');
+					} else {
 						eval("var translations = " + data + ";");
 						// Sort by assentient counts descending.
 						translations = {
@@ -39,33 +90,24 @@ app.get('/', function (req, res) {
 								return (translation[1].assentients) ? (- translation[1].assentients.length) : 0;
 							})
 						};
-						filters[code].translations = [translations._array[0] || [], translations._array[1] || [], translations._array[2] || []];
+						conversations[code].translations = [translations._array[0] || [], translations._array[1] || [], translations._array[2] || []];
 						callback(null);
-					} else {
-						callback('ERR_CODE_FILE_NOT_EXIST');
 					}
 				});
 			}, function (err) {
 				if (! err) {
-					callback(null, user, filters);
+					callback(null, conversations);
 				} else {
 					callback(err);
 				}
 			});
 		}
-	], function (err, user, filters) {
-		res.render('index', {
-			user      : user || {},
-			baseData  : filters || {},
-			documents : TSV_FILES
+	], function (err, conversations) {
+		res.render('table', {
+			baseData : conversations || {}
 		});	
 	});
 });
-
-// Login via Facebook.
-app.get('/login', function (req, res) { res.redirect('/auth/facebook'); });
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
 
 // Get the conversation detail.
 app.get('/conversation/:code', function (req, res) {

@@ -74,62 +74,16 @@ html
 									option(value='FILTER_UNTRANSLATED') 尚未翻譯
 									option(value='FILTER_TRANSLATED') 已被翻譯
 							div.center.aligned.column
-								select.ui.fluid.dropdown(name='document')
-									option(value='DOCUMENT_ALL') 不指定文件
-									each content, document in documents
-										option(value='FILTER_' + document.toUpperCase()) #{document}
+								select.ui.fluid.dropdown(name='file')
+									option(value='FILE_ALL') 不指定文件
+									each content, file in files
+										option(value='FILTER_' + file.toUpperCase()) #{file}
 					div.ui.horizontal.divider
 						i.setting.icon
-					button.ui.fluid.massive.green.button(onclick="$('.tableContainer').addClass('loading'); location.reload();") 換新一組翻譯
+					button.ui.fluid.massive.green.button(onclick="refreshList();") 換新一組翻譯
 					div.ui.horizontal.divider
 						i.dashboard.icon
-					table.ui.striped.celled.structured.table
-						thead
-							tr
-								th.one.wide.collapsing.center.aligned(rowspan='2', data-group='code') 編號
-								th.two.wide.center.aligned(rowspan='2', data-group='korean')
-									div.country.flag
-										img(src="/public/images/country/32/South-Korea.png")
-									| 韓文（Korean）
-								th.two.wide.center.aligned(rowspan='2', data-group='english')
-									div.country.flag
-										img(src="/public/images/country/32/United-States.png")
-									| 英語（English）
-								th.eleven.wide.center.aligned(colspan='4')
-									div.country.flag
-										img(src="/public/images/country/32/Taiwan.png")
-									| 正體中文（Chinese Traditional）
-							tr
-								th.two.wide.center.aligned 當前第一
-								th.two.wide.center.aligned 當前第二
-								th.two.wide.center.aligned 當前第三
-								th.one.wide.collapsing.center.aligned 展開全部
-						tbody
-							each types, code in baseData
-								tr
-									td.left.aligned.break.all #{code}
-									each conversation, language in types.originals
-										if conversation !== ''
-											if language === 'KR'
-												td
-													div.country.flag
-														img(src="/public/images/country/32/South-Korea.png")
-													| #{conversation}
-											else if language === 'EN'
-												td
-													div.country.flag
-														img(src="/public/images/country/32/United-States.png")
-													| #{conversation}
-										else
-											td.disabled.center.aligned 暫無資料
-									each translation in types.translations
-										if translation.length
-											td #{translation[1].conversation}
-										else
-											td.disabled.center.aligned 從缺
-									td.center.aligned.cursor.pointer.animate(onclick="detailConversation('" + code + "');")
-										button.ui.circular.icon.green.button.margin.reset
-											i.add.icon
+					include table.jade
 		include detail.jade
 		include template/footer.jade
 		script.
@@ -147,9 +101,11 @@ html
 					$('button', this).transition('remove looping');
 				}
 			);
-			// Remove the passport-facebook logged-in successfullly, then remove the hash '#_=_' in url.
 			$(document).ready(function () {
+				// Remove the passport-facebook logged-in successfullly, then remove the hash '#_=_' in url.
 				window.history.replaceState('', document.title, window.location.pathname);
+				// Initial the list.
+				refreshList();
 			});
 		script.
 			// Semantic-UI Checkbox default value using session storage.
@@ -207,6 +163,19 @@ html
 			// Semantic-UI dropdown.
 			$('.ui.dropdown').dropdown();
 		script.
+			// Refresh the list.
+			function refreshList() {
+				$('.tableContainer').addClass('loading');
+				var sample = $('.advanceContainer select[name=sample]').val(),
+					filter = $('.advanceContainer select[name=filter]').val(),
+					file   = $('.advanceContainer select[name=file]').val();
+				ajaxGetConversationList(sample, filter, file, function (data) {
+					var $table = $('.tableContainer table')
+						HTML   = $.parseHTML(data, null, true);
+					$table.replaceWith(HTML[0]);
+					$('.tableContainer').removeClass('loading');
+				});
+			}
 			// Fullscreen dialog for detail of conversation.
 			function detailConversation(code) {
 				ajaxGetConversation(code, function (data) {
@@ -242,6 +211,22 @@ html
 				});
 			}
 		script.
+			function ajaxGetConversationList(sample, filter, file, callback) {
+				$.ajax(
+					{
+						url     : '/sample/' + sample + '/filter/' + filter + '/file/' + file,
+						type    : 'GET',
+						error   : function () {
+							var data = { type: 'ERR_TIMEOUT' };
+							callback(data);
+						},
+						success : function (data) {
+							callback(data);
+						},
+						timeout : 10000
+					}
+				);
+			}
 			function ajaxGetConversation(code, callback) {
 				$.ajax(
 					{
