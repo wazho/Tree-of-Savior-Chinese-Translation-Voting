@@ -1,5 +1,6 @@
 html, body {
 	height: 100%;
+	overflow-x: hidden;
 }
 
 .cursor.pointer {
@@ -98,9 +99,14 @@ body > .wrapper > .container {
 	margin-bottom: 100px !important;
 }
 
-.tableContainer label {
+.tableContainer .ui.checkbox label {
 	font-size: 1.35em !important;
 	letter-spacing: 0.5em;
+}
+
+.tableContainer .ui.dropdown {
+	font-size: 1.25em !important;
+	letter-spacing: 0.1em;
 }
 
 .tableContainer > button {
@@ -164,6 +170,18 @@ footer .license {
 
 footer .author {
 	padding: 10px 0px 30px 0px;
+}
+
+footer .author a:link, footer .author a:visited, footer .author a:active {
+	color: #00CC00 !important;
+}
+
+footer .author a:hover {
+	color: #00CC00 !important;
+}
+
+footer .author .animate {
+	padding: 8px 0px;
 }
 
 @media screen and (max-width: 767px) {

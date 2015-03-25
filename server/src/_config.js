@@ -3,7 +3,7 @@
    ============================================= */
 
 // Parsing the original datasets.
-var AUTO_REFRESH_ORIGINAL_TSV = true;
+var AUTO_REFRESH_ORIGINAL_TSV = false;
 var BASE_DATA = {};
 var TSV_SOURCE = 'https://raw.githubusercontent.com/Treeofsavior/EnglishTranslation/master/';
 var TSV_FILES  = { /* TSV_FILES cannot have any '.' (dot) in the part of key, please careful */

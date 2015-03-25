@@ -20,6 +20,15 @@ footer
 	div.author
 		h3.ui.center.aligned.inverted.header
 			a(href='http://salmon.tw', target='_blank')
-				span.popup(data-content='土生土長台灣鮭', data-position='top center') Salmon @ 2015.03
+				div.animate
+					span.popup(data-content='土生土長台灣鮭', data-position='top center') Salmon @ 2015.03
 	script.
+		// Footer hover effect.
 		$('footer .popup').popup();
+		$('footer .animate').hover(
+			function () {
+				$(this).transition('set looping').transition('jiggle', '1500ms');
+			}, function () {
+				$(this).transition('remove looping');
+			}
+		);

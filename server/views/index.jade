@@ -41,7 +41,7 @@ html
 						div.guides
 							include guide.jade
 				div.ui.green.segment.tableContainer
-					div.ui.three.column.stackable.grid
+					div.ui.four.column.stackable.grid
 						div.center.aligned.column
 							div.ui.checkbox
 								input(name='code', type='checkbox', data-group='code')
@@ -54,6 +54,22 @@ html
 							div.ui.checkbox
 								input(name='english', type='checkbox', data-group='english')
 								label 顯示英文
+						div.center.aligned.column
+							div.ui.checkbox
+								input(name='advance', type='checkbox', data-group='advance')
+								label 進階功能
+					div.advanceContainer
+						div.ui.divider
+						div.ui.four.column.stackable.centered.grid
+							div.center.aligned.column
+								select.ui.fluid.dropdown(name='sample')
+									option(value='SAMPLE_RANDOM') 系統隨機
+									option(value='SAMPLE_CONTINUOUS') 上下文連續
+							div.center.aligned.column
+								select.ui.fluid.dropdown(name='filter')
+									option(value='FILTER_ALL') 不限制
+									option(value='FILTER_UNTRANSLATED') 未被翻譯
+									option(value='FILTER_TRANSLATED') 已被翻譯
 					div.ui.horizontal.divider
 						i.setting.icon
 					button.ui.fluid.massive.green.button(onclick="$('.tableContainer').addClass('loading'); location.reload();") 換新一組翻譯
@@ -110,33 +126,50 @@ html
 			if (! sessionStorage.english) {
 				sessionStorage.english = 'on';
 			}
+			if (! sessionStorage.advance) {
+				sessionStorage.advance = 'off';
+			}
+			// Semantic-UI checkbox.
 			$('.ui.checkbox').map(function (index, element) {
 				var group  = $('input', element).data('group');
-				var toggle = sessionStorage[group];
-				$(element).checkbox((toggle === 'on') ? 'check' : 'uncheck');
+				if (group) {
+					var toggle = sessionStorage[group];
+					$(element).checkbox((toggle === 'on') ? 'check' : 'uncheck');
+				}
 			});
+			var tableBinding = ['code', 'korean', 'english'];
 			$('.ui.checkbox').checkbox({
 				onChecked   : function () {
 					var group  = $(this).data('group');
-					var index  = $('th[data-group=' + group + ']').index('thead tr th') + 1;
-					var $thead = $('th[data-group=' + group + ']'),
-						$tbody = $('tbody tr td:nth-child(' + index + ')');
-					$thead.show();
-					$tbody.show();
-					// Modify the session storage.
-					sessionStorage[group] = 'on';
+					// Process.
+					if (tableBinding.indexOf(group) !== -1) {
+						sessionStorage[group] = 'on';
+						var index  = $('th[data-group=' + group + ']').index('thead tr th') + 1;
+						var $thead = $('th[data-group=' + group + ']'),
+							$tbody = $('tbody tr td:nth-child(' + index + ')');
+						$thead.show();
+						$tbody.show();
+					} else {
+						$('.advanceContainer').transition('swing down', '1000ms');
+					}
 				},
 				onUnchecked	: function () {
 					var group  = $(this).data('group');
-					var index  = $('th[data-group=' + group + ']').index('thead tr th') + 1;
-					var $thead = $('th[data-group=' + group + ']'),
-						$tbody = $('tbody tr td:nth-child(' + index + ')');
-					$thead.hide();
-					$tbody.hide();
-					// Modify the session storage.
-					sessionStorage[group] = 'off';
+					// Process.
+					if (tableBinding.indexOf(group) !== -1) {
+						sessionStorage[group] = 'off';
+						var index  = $('th[data-group=' + group + ']').index('thead tr th') + 1;
+						var $thead = $('th[data-group=' + group + ']'),
+							$tbody = $('tbody tr td:nth-child(' + index + ')');
+						$thead.hide();
+						$tbody.hide();
+					} else {
+						$('.advanceContainer').transition('swing down', '0ms');
+					}
 				}
 			});
+			// Semantic-UI dropdown.
+			$('.ui.dropdown').dropdown();
 		script.
 			// Fullscreen dialog for detail of conversation.
 			function detailConversation(code) {
