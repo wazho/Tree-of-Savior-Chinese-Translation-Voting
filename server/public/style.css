@@ -109,6 +109,20 @@ body > .wrapper > .container {
 	margin-bottom: 100px !important;
 }
 
+.tableContainer thead th {
+	white-space: nowrap;
+}
+
+.tableContainer thead th .country.flag {
+	display: inline-block !important;
+	margin-right: 5px;
+	vertical-align: middle;
+}
+
+.tableContainer tbody td .country.flag {
+	display: none !important;
+}
+
 .tableContainer .ui.checkbox label {
 	font-size: 1.35em !important;
 	letter-spacing: 0.5em;
@@ -121,6 +135,31 @@ body > .wrapper > .container {
 
 .tableContainer > button {
 	letter-spacing: 0.25em;
+}
+
+@media screen and (max-width: 767px) {
+	.tableContainer thead {
+		display: none !important;
+		visibility: hidden !important;
+	}
+
+	.tableContainer tbody td .country.flag {
+		position: relative;
+		display: inline !important;
+		margin-right: 5px;
+		width: 20px !important;
+	}
+
+	.tableContainer tbody td .country.flag img {
+		position: relative;
+		top: 9px;
+	}
+
+	.tableContainer tbody td.disabled {
+		height: 0px;
+		display: none !important;
+		visibility: hidden !important;
+	}
 }
 
 /* Conversation dialog */
@@ -182,12 +221,8 @@ footer .author {
 	padding: 10px 0px 30px 0px;
 }
 
-footer .author a:link, footer .author a:visited, footer .author a:active {
-	color: #00CC00 !important;
-}
-
-footer .author a:hover {
-	color: #00CC00 !important;
+footer .author a:link, footer .author a:visited, footer .author a:active, footer .author a:hover {
+	color: #00AA00 !important;
 }
 
 footer .author .animate {

@@ -82,9 +82,18 @@ html
 						thead
 							tr
 								th.one.wide.collapsing.center.aligned(rowspan='2', data-group='code') 編號
-								th.two.wide.center.aligned(rowspan='2', data-group='korean') 韓文（Korean）
-								th.two.wide.center.aligned(rowspan='2', data-group='english') 英語（English）
-								th.eleven.wide.center.aligned(colspan='4') 正體中文（Chinese Traditional）
+								th.two.wide.center.aligned(rowspan='2', data-group='korean')
+									div.country.flag
+										img(src="/public/images/country/32/South-Korea.png")
+									| 韓文（Korean）
+								th.two.wide.center.aligned(rowspan='2', data-group='english')
+									div.country.flag
+										img(src="/public/images/country/32/United-States.png")
+									| 英語（English）
+								th.eleven.wide.center.aligned(colspan='4')
+									div.country.flag
+										img(src="/public/images/country/32/Taiwan.png")
+									| 正體中文（Chinese Traditional）
 							tr
 								th.two.wide.center.aligned 當前第一
 								th.two.wide.center.aligned 當前第二
@@ -94,9 +103,18 @@ html
 							each types, code in baseData
 								tr
 									td.left.aligned.break.all #{code}
-									each conversation in types.originals
+									each conversation, language in types.originals
 										if conversation !== ''
-											td #{conversation}
+											if language === 'KR'
+												td
+													div.country.flag
+														img(src="/public/images/country/32/South-Korea.png")
+													| #{conversation}
+											else if language === 'EN'
+												td
+													div.country.flag
+														img(src="/public/images/country/32/United-States.png")
+													| #{conversation}
 										else
 											td.disabled.center.aligned 暫無資料
 									each translation in types.translations
@@ -104,7 +122,7 @@ html
 											td #{translation[1].conversation}
 										else
 											td.disabled.center.aligned 從缺
-									td.center.aligned.cursor.pointer(onclick="detailConversation('" + code + "');")
+									td.center.aligned.cursor.pointer.animate(onclick="detailConversation('" + code + "');")
 										button.ui.circular.icon.green.button.margin.reset
 											i.add.icon
 		include detail.jade
@@ -116,6 +134,14 @@ html
 			$('header').css('background-image', 'url(/public/images/screenshots/' + Math.floor(Math.random() * 5 + 1) + '.jpg)');
 			// Ban the all drag event.
 			$('img').on('dragstart', function (event) { event.preventDefault(); });
+			// Td hover effect.
+			$('.tableContainer td.animate').hover(
+				function () {
+					$('button', this).transition('set looping').transition('jiggle', '1000ms');
+				}, function () {
+					$('button', this).transition('remove looping');
+				}
+			);
 			// Remove the passport-facebook logged-in successfullly, then remove the hash '#_=_' in url.
 			$(document).ready(function () {
 				window.history.replaceState('', document.title, window.location.pathname);
