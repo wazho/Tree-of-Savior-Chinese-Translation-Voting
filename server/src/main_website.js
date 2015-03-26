@@ -42,7 +42,6 @@ app.get('/sample/:sample/filter/:filter/file/:file', function (req, res) {
 		// Filtering part of conversions to layout.
 		function (params, callback) {
 			var sample;
-			console.log(BASE_DATA);
 			// File.
 			if (params.file === 'FILE_ALL') {
 				sample = _.keys(BASE_DATA);

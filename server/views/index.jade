@@ -44,6 +44,8 @@ html
 							div.guides
 								include guide.jade
 				div.ui.green.segment.tableContainer
+					div.ui.active.inverted.dimmer
+						div.ui.text.medium.loader Loading ... 資料加載中
 					div.ui.four.column.stackable.grid
 						div.center.aligned.column
 							div.ui.checkbox
@@ -123,57 +125,66 @@ html
 			}
 			// Semantic-UI checkbox.
 			$('.ui.checkbox').map(function (index, element) {
-				var group  = $('input', element).data('group');
+				var group = $('input', element).data('group');
 				if (group) {
 					var toggle = sessionStorage[group];
 					$(element).checkbox((toggle === 'on') ? 'check' : 'uncheck');
 				}
 			});
-			var tableBinding = ['code', 'korean', 'english'];
 			$('.ui.checkbox').checkbox({
 				onChecked   : function () {
-					var group  = $(this).data('group');
-					// Process.
-					if (tableBinding.indexOf(group) !== -1) {
-						sessionStorage[group] = 'on';
-						var index  = $('th[data-group=' + group + ']').index('thead tr th') + 1;
-						var $thead = $('th[data-group=' + group + ']'),
-							$tbody = $('tbody tr td:nth-child(' + index + ')');
+					var group = $(this).data('group');
+					sessionStorage[group] = 'on';
+					checkedToggle($(this));
+				},
+				onUnchecked	: function () {
+					var group = $(this).data('group');
+					sessionStorage[group] = 'off';
+					checkedToggle($(this));
+				}
+			});
+			function checkedToggle($this) {
+				var group = $this.data('group');
+				if (['code', 'korean', 'english'].indexOf(group) !== -1) {
+					var index  = $('th[data-group=' + group + ']').index('thead tr th') + 1;
+					var $thead = $('th[data-group=' + group + ']'),
+						$tbody = $('tbody tr td:nth-child(' + index + ')');
+					if (sessionStorage[group] === 'on') {
 						$thead.show();
 						$tbody.show();
 					} else {
-						$('.advanceContainer').transition('swing down', '1000ms');
-					}
-				},
-				onUnchecked	: function () {
-					var group  = $(this).data('group');
-					// Process.
-					if (tableBinding.indexOf(group) !== -1) {
-						sessionStorage[group] = 'off';
-						var index  = $('th[data-group=' + group + ']').index('thead tr th') + 1;
-						var $thead = $('th[data-group=' + group + ']'),
-							$tbody = $('tbody tr td:nth-child(' + index + ')');
 						$thead.hide();
 						$tbody.hide();
-					} else {
-						$('.advanceContainer').transition('swing down', '0ms');
+					}
+				} else if (group === 'advance') {
+					var $advanceContainer       = $('.advanceContainer'),
+						advanceContainerVisible = $advanceContainer.transition('is visible');
+					if (sessionStorage[group] === 'on' && ! advanceContainerVisible) {
+						$advanceContainer.transition('swing down', '1000ms');
+					} else if (sessionStorage[group] === 'off' && advanceContainerVisible) {
+						$('.advanceContainer').transition('swing down', '750ms');
 					}
 				}
-			});
+			}
 			// Semantic-UI dropdown.
 			$('.ui.dropdown').dropdown();
 		script.
 			// Refresh the list.
+			$('.tableContainer > .dimmer').transition('swing down', '0ms');
 			function refreshList() {
-				$('.tableContainer').addClass('loading');
+				$('.tableContainer > .dimmer').transition('slide down', '1000ms');
 				var sample = $('.advanceContainer select[name=sample]').val(),
 					filter = $('.advanceContainer select[name=filter]').val(),
 					file   = $('.advanceContainer select[name=file]').val();
 				ajaxGetConversationList(sample, filter, file, function (data) {
 					var $table = $('.tableContainer table')
 						HTML   = $.parseHTML(data, null, true);
+					// Replace the element object.
 					$table.replaceWith(HTML[0]);
-					$('.tableContainer').removeClass('loading');
+					// Reference by checkbox value.
+					$('.ui.checkbox input').map(function (index, $this) { checkedToggle($(this)); });
+					// Loading dimmer animation.
+					$('.tableContainer > .dimmer').transition('slide down', '1000ms');
 				});
 			}
 			// Fullscreen dialog for detail of conversation.

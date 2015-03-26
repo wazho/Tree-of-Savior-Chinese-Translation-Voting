@@ -86,7 +86,7 @@ body > .wrapper > .container {
 	top: 0;
 	left: 0;
 	border: 0;
-	z-index: 999;
+	z-index: 9999;
 }
 
 @media screen and (max-width: 767px) {
