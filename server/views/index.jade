@@ -26,10 +26,14 @@ html
 							div.login
 								div.ui.blue.segment
 									if user !== 'GUEST'
-										h2.ui.center.aligned.header
-											img.ui.circular.image(src='http://graph.facebook.com/' + user.id + '/picture?type=square')
-											div.content 您好呀，#{user.name}
-												div.sub.header 一起來協助翻譯工作吧！
+										div.ui.stackable.grid
+											div.ten.wide.center.aligned.column
+												h2.ui.center.aligned.header
+													img.ui.circular.image(src='http://graph.facebook.com/' + user.id + '/picture?type=square')
+													div.content 您好呀，#{user.name}
+														div.sub.header 一起來協助翻譯工作吧！
+											div.six.wide.center.aligned.column
+												button.ui.blue.fluid.disabled.button 具名貢獻
 									else
 										div.ui.stackable.grid
 											div.six.wide.center.aligned.column
@@ -44,7 +48,7 @@ html
 							div.guides
 								include guide.jade
 				div.ui.green.segment.tableContainer
-					div.ui.active.inverted.dimmer
+					div.ui.active.dimmer
 						div.ui.text.medium.loader Loading ... 資料加載中
 					div.ui.four.column.stackable.grid
 						div.center.aligned.column
@@ -95,14 +99,7 @@ html
 			$('header').css('background-image', 'url(/public/images/screenshots/' + Math.floor(Math.random() * 5 + 1) + '.jpg)');
 			// Ban the all drag event.
 			$('img').on('dragstart', function (event) { event.preventDefault(); });
-			// Td hover effect.
-			$('.tableContainer td.animate').hover(
-				function () {
-					$('button', this).transition('set looping').transition('jiggle', '1000ms');
-				}, function () {
-					$('button', this).transition('remove looping');
-				}
-			);
+			// 
 			$(document).ready(function () {
 				// Remove the passport-facebook logged-in successfullly, then remove the hash '#_=_' in url.
 				window.history.replaceState('', document.title, window.location.pathname);
@@ -162,7 +159,7 @@ html
 					if (sessionStorage[group] === 'on' && ! advanceContainerVisible) {
 						$advanceContainer.transition('swing down', '1000ms');
 					} else if (sessionStorage[group] === 'off' && advanceContainerVisible) {
-						$('.advanceContainer').transition('swing down', '750ms');
+						$('.advanceContainer').transition('hide');
 					}
 				}
 			}
@@ -184,12 +181,21 @@ html
 					// Reference by checkbox value.
 					$('.ui.checkbox input').map(function (index, $this) { checkedToggle($(this)); });
 					// Loading dimmer animation.
-					$('.tableContainer > .dimmer').transition('slide down', '1000ms');
+					$('.tableContainer > .dimmer').transition('slide down', '300ms');
+					// Td hover effect.
+					$('.tableContainer td.animate').hover(
+						function () {
+							$('button', this).transition('set looping').transition('jiggle', '1000ms');
+						}, function () {
+							$('button', this).transition('remove looping');
+						}
+					);
 				});
 			}
 			// Fullscreen dialog for detail of conversation.
 			function detailConversation(code) {
 				ajaxGetConversation(code, function (data) {
+					console.log(data);
 					var $conversation = $('.detailConversation.ui.modal'),
 						$translation  = $('.submitTranslation.ui.modal')
 						HTML          = $.parseHTML(data, null, true);
