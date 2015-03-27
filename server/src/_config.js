@@ -17,9 +17,23 @@ var TSV_FILES  = {
 		'KR' : 'QUEST_LV_0100.tsv',				// Last update. 2015/03/20 22:47
 		'EN' : 'QUEST_LV_0100_en.tsv',			// Last update. 2015/03/20 22:46
 	},
+	/* New added.
+	'QUEST_LV_0200' : {
+		'KR' : 'QUEST_LV_0200.tsv',				// Last update. 
+		'EN' : 'QUEST_LV_0200_en.tsv',			// Last update. 
+	},
+	'ITEM' : {
+		'KR' : 'ITEM.tsv',						// Last update. 
+		'EN' : 'ITEM_en.tsv',					// Last update. 
+	},
+	'SKILL' : {
+		'KR' : 'SKILL.tsv',						// Last update. 
+		'EN' : 'SKILL_en.tsv',					// Last update. 
+	},
+	*/
 	// Terms : These are a special part that allow the official's request.
 	// 'TERMS_CLASS' : {
-	// 	'' : 'wd'
+	// 	'' : ''
 	// }
 };
 

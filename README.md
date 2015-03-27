@@ -14,26 +14,26 @@
 
     *zh*: 系統自動至官方 GitHub 下載當前的最新語言文件包。
 
-    *en*:
+    *en*: Parsing the `.tsv` data from ToS official GitHub.
 2. #### 多語言合併（Merging multi-languages）
 
     *zh*: 將相同檔名的韓文、英文做合併處理、資料建檔。
 
-    *en*:
-3. #### 群眾資料初始化（Initail crowdsourcing data）
+    *en*: Merging the same file name .tsv into JSON, and write them in `server/generation_json`.
+3. #### 群眾資料初始化（Initailize crowdsourcing data）
 
     *zh*: 依照不同語言文件編號，產生相對應的群眾資料集。
 
-    *en*:
+    *en*: Then initlizing the crowd's translations in `server/crowdsourcing`.
 4. #### 玩家群眾翻譯（Crowdsourced translation）
 
     *zh*: 玩家登入 Facebook 後在首頁隨機取出幾筆，進而提交翻譯版本。
 
-    *en*: 
+    *en*: At the web app, people can read conversations randomly. They could submit translation version.
 5. #### 翻譯版本排行（Traslations ranking）
     *zh*: 玩家可以針對不同對話內容的各個翻譯版本中挑選幾筆給予贊同，然後依照贊同數量決定該版本的排行順序。
 
-    *en*:
+    *en*: Others people could choose translation version that they agree. System ranks the counts of agreement.
 
 ---
 
@@ -81,7 +81,6 @@ https://nodejs.org/download/
 http://your-domain-name:your-open-port
 ```
 
-
 ---
 
 ### 畫面截圖 Screenshots
@@ -108,4 +107,4 @@ About Game screenshot images all rights reserved by IMC Games & Nexon.
 1. 上下文承接式翻譯
 2. 未翻五筆 / 隨機五筆 / 已翻五筆
 3. 贊同數未達 x 筆可以將其移除後重新提交翻譯
-4. 
+4. and else ... XD
