@@ -19,12 +19,13 @@ footer
 		| 本站所使用之遊戲畫面為韓國遊戲開發、發行公司 IMC Games & Nexon 所擁有，僅研究學術用途無謀取獲利
 	div.author
 		h3.ui.center.aligned.inverted.header
-			a(href='http://salmon.tw', target='_blank')
-				div.animate
-					span.popup(data-content='土生土長台灣鮭', data-position='top center') Salmon @ 2015.03
+			span Written by 
+				a(href='http://salmon.tw', target='_blank') Salmon
+				| . Publicated by 
+				a Ding
+				| .
 	script.
 		// Footer hover effect.
-		$('footer .popup').popup();
 		$('footer .animate').hover(
 			function () {
 				$(this).transition('set looping').transition('jiggle', '1500ms');

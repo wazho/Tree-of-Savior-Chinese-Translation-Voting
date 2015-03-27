@@ -23,20 +23,20 @@ table.ui.striped.celled.structured.table
 		each types, code in baseData
 			tr
 				td.left.aligned.break.all #{code}
-				each conversation, language in types.originals
-					if conversation !== ''
-						if language === 'KR'
-							td
-								div.country.flag
-									img(src="/public/images/country/32/South-Korea.png")
-								| #{conversation}
-						else if language === 'EN'
-							td
-								div.country.flag
-									img(src="/public/images/country/32/United-States.png")
-								| #{conversation}
-					else
-						td.disabled.center.aligned 暫無資料
+				if types.originals['KR'] && types.originals['KR'].conversation !== ''
+					td
+						div.country.flag
+							img(src="/public/images/country/32/South-Korea.png")
+						| #{types.originals['KR']}
+				else
+					td.disabled.center.aligned 暫無資料
+				if types.originals['EN'] && types.originals['EN'].conversation !== ''
+					td
+						div.country.flag
+							img(src="/public/images/country/32/United-States.png")
+						| #{types.originals['EN']}
+				else
+					td.disabled.center.aligned 暫無資料
 				each translation in types.translations
 					if translation.length
 						td #{translation[1].conversation}

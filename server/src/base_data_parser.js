@@ -53,21 +53,25 @@ var generateTranslateBaseData = function () {
 				},
 				// Split the string in '\n', then split each row in '\r'.
 				function (callback) {
-					var dest = originalTsvPath + TSV_FILES[series][language];
-					fs.readFile(dest, 'utf8', function (err, data) {
-						var conversations = {};
-						if (err) {
-							callback(err);
-						} else {
-							var lines = data.toString().split('\n').map(function (line) {
-								var line = line.split('\t');
-								if (line[0] && line[0] !== '') {
-									conversations[line[0]] = line[1];
-								}
-							});
-							callback(null, language, conversations);
-						}
-					});
+					if (AUTO_REFRESH_GENERATION_JSON) {
+						var dest = originalTsvPath + TSV_FILES[series][language];
+						fs.readFile(dest, 'utf8', function (err, data) {
+							var conversations = {};
+							if (err) {
+								callback(err);
+							} else {
+								var lines = data.toString().split('\n').map(function (line) {
+									var line = line.split('\t');
+									if (line[0] && line[0] !== '') {
+										conversations[line[0]] = line[1];
+									}
+								});
+								callback(null, language, conversations);
+							}
+						});
+					} else {
+						callback(null);
+					}
 				}
 			], function (err, language, conversations) {
 				(err) ? callback(err) : callback(null, { language : language, conversations : conversations });
@@ -92,7 +96,7 @@ var generateTranslateBaseData = function () {
 		});
 	}, function (err) {
 		console.log("[Success] Refresh the files of generation JSON.");
-		setTimeout(readTranslateBaseData, 2000);
+		setTimeout(readTranslateBaseData, 5000);
 	});
 }
 

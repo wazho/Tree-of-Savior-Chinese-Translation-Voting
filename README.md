@@ -99,12 +99,3 @@ About Game screenshot images all rights reserved by IMC Games & Nexon.
 
 
 ![footer](readme/4.png)
-
----
-
-### 計劃開發 Planning
-
-1. 上下文承接式翻譯
-2. 未翻五筆 / 隨機五筆 / 已翻五筆
-3. 贊同數未達 x 筆可以將其移除後重新提交翻譯
-4. and else ... XD

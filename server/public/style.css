@@ -227,6 +227,10 @@ footer .author {
 	padding: 10px 0px 30px 0px;
 }
 
+footer .author span {
+	color : #777777;
+}
+
 footer .author a:link, footer .author a:visited, footer .author a:active, footer .author a:hover {
 	color: #00AA00 !important;
 }

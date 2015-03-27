@@ -50,7 +50,7 @@ html
 				div.ui.green.segment.tableContainer
 					div.ui.active.dimmer
 						div.ui.text.medium.loader Loading ... 資料加載中
-					div.ui.four.column.stackable.grid
+					div.ui.three.column.stackable.grid
 						div.center.aligned.column
 							div.ui.checkbox
 								input(name='code', type='checkbox', data-group='code')
@@ -63,11 +63,11 @@ html
 							div.ui.checkbox
 								input(name='english', type='checkbox', data-group='english')
 								label 顯示英文
-						div.center.aligned.column
-							div.ui.checkbox
-								input(name='advance', type='checkbox', data-group='advance')
-								label 進階功能
-					div.advanceContainer
+					//- 	div.center.aligned.column
+					//- 		div.ui.checkbox
+					//- 			input(name='advance', type='checkbox', data-group='advance')
+					//- 			label 進階功能
+					div.advanceContainer(style="display: none;")
 						div.ui.divider
 						div.ui.five.column.stackable.centered.grid
 							div.center.aligned.column

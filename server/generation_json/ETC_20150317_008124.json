@@ -1,0 +1,1 @@
+{"KR":"local buf = GetBuffByName(self, \"Revenge\");  local over = GetOver(buf);  return over + 1 .. \" 차 소환이 시작되었습니다.\";"}

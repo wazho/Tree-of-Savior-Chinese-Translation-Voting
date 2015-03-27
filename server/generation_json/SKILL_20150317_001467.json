@@ -1,0 +1,1 @@
+{"KR":"공격력 #{SkillAtkAdd}#{nl}캐스팅 시간 #{CaptionTime}#초{nl}전투불능 회복 후 HP #{CaptionRatio}#% 회복","EN":"Attack power #{SkillAtkAdd}#{nl}Casting time #{CaptionTime}# seconds{nl}Recover #{CaptionRatio}#% HP after recovering from incapable of combat "}

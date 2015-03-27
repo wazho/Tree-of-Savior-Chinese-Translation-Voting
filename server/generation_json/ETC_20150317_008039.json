@@ -1,0 +1,1 @@
+{"KR":"몬스터 btree 초기화 대기시간. 몬스터주변에 pc없으면 정해진 시간후에 btree를 다시만든다. btree에 잡혀있는 scriptRefCount를 없애서 좀비pc를 없앤다."}
