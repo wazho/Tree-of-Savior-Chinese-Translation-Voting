@@ -48,36 +48,37 @@
 ### 執行方式 Processing
 
 
+```
 1. Clone this repo in `terminal`.
 
-```
 > git clone https://github.com/grass0916/Tree-of-Savior-Chinese-Translation-Voting.git
+
 ```
 
+```
 2. Please install Node.js in your OS version.
 
-```
 https://nodejs.org/download/
 ```
 
+```
 3. Change the config.js in `server/src/_config.js`.
 
-```
-1. Facebook App ID
-2. Domain name & port
-3. And else you want.
+a. Facebook App ID
+b. Domain name & port
+c. And else you want.
 ```
 
+```
 4. Run the server in `terminal`.
 
-```
 > cd Tree-of-Savior-Chinese-Translation-Voting/
 > node server/app.js
 ```
 
+```
 5. Now, Website is running. Browse it.
 
-```
 http://your-domain-name:your-open-port
 ```
 
